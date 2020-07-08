@@ -1,8 +1,8 @@
 # Stonecroft Bees
 
-Stonecroft Bees will be a website for a commerical beekeeping business, which sells bee products, such as honey and beeswax, and beekeeping supplies.
+Stonecroft Bees will be a website for a commercial beekeeping business; which sells bee products, such as honey and beeswax, and beekeeping supplies, such as hives, tools, and books.
 
-The site will be a full featured e-commerse site, allowing both registered and unregistered purchases by customers, and the site admin to administrate products and users, and manage stock levels.
+The site will be a full featured e-commerce site, allowing both registered and unregistered purchases by customers, and the site admin to administrate products and users, and manage stock levels.
  
 ## UX
  
