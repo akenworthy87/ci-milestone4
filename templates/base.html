@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock meta %}
+
+    {% block extra_meta %}
+    {% endblock extra_meta %}
+
+    {% block corecss %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <!-- Site CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    {% endblock corecss %}
+
+    {% block extra_css %}
+    {% endblock extra_css %}
+	
+    {% block corejs %}
+        <!-- Bootstrap Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    {% endblock corejs %}
+
+    {% block extra_js %}
+    {% endblock extra_js %}
+	
+    <title>Stonecroft Bees {% block extra_title %}{% endblock extra_title %}</title>
+</head>
+
+<body>
+    <header class="container-fluid fixed-top"></header>
+
+    {% if messages %}
+        <div class="message-container"></div>
+    {% endif %}
+
+    {% block page_header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block postloadjs %}
+    {% endblock %}
+
+
+</body>
+
+</html>
