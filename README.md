@@ -47,13 +47,14 @@ Site Owners will be able to manage user profiles, add product information, and v
 | 24  | Site Owner | Delete a product                                                  | Remove items that aren't for sale anymore                                             |
 |     |            | **_Stock Control_**                                               |                                                                                       |
 | 25  | Site Owner | Keep records of available stock levels                            | Manage the level of stock                                                             |
-| 24  | Site Owner | Automatically have marked reserved when purchased                 | Prevent shoppers buying more stock than available                                     |
-| 25  | Site Owner | Automatically have reserved stocked unmarked when order cancelled | Allow that stock to be re-available for purchase by other shoppers                    |
-| 26  | Site Owner | Stock to subtract when order marked as dispatched                 | Have stock levels on system match stock levels in warehouse                           |
-| 27  | Site Owner | Get a printable invoice                                           | So I know what items to pick for an order                                             |
-|     |            | **_Swarm Alerts_**                                                |                                                                                       |
-| 28  | Public     | Report on sightings of bee swarms                                 | Alert local beekeepers of the location of a swarm                                     |
-| 29  | Beekeeper  | Get email alerts of swarms reported                               | Collect them and get free bees                                                        |
+| 26  | Site Owner | Automatically have marked reserved when purchased                 | Prevent shoppers buying more stock than available                                     |
+| 27  | Site Owner | Automatically have reserved stocked unmarked when order cancelled | Allow that stock to be re-available for purchase by other shoppers                    |
+| 28  | Site Owner | Stock to subtract when order marked as dispatched                 | Have stock levels on system match stock levels in warehouse                           |
+| 29  | Site Owner | Get a printable invoice                                           | So I know what items to pick for an order                                             |
+|     |            | **_Messaging_**                                                   |                                                                                       |
+| 30  | Public     | Report on sightings of bee swarms                                 | Alert local beekeepers of the location of a swarm                                     |
+| 31  | Beekeeper  | Get email alerts of swarms reported                               | Collect them and get free bees                                                        |
+| 32  | Shopper    | Send enquiries to site owner                                      | To get answers to questions                                                           |
 
 ### Wireframes 
 
