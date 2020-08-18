@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
     # Site apps
     'home',
-    'basket',
+    'bag',
     'checkout',
     'contact',
     'products',

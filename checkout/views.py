@@ -1,3 +1,13 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def cache_checkout_data(request):
+    return
+
+
+def checkout(request):
+    return
+
+
+def checkout_success(request, order_number):
+    return

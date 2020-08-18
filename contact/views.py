@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def contact(request):
+    return
+
+
+def swarms(request):
+    return
