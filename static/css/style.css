@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    height: calc(100vh - 164px);
+    height: calc(100vh - 132px);
     color: #555;
     font-family: 'Lato';
 }
@@ -34,6 +34,13 @@ body {
     background: black;
     color: white;
     min-width: 260px;
+}
+
+.home-nav-button {
+    background: rgb(44, 33, 2);
+    color: white;
+    min-width: 260px;
+    min-height: 100px;
 }
 
 .btn-black {
@@ -280,18 +287,18 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 132px;
     }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 93px;
     }
 
     body {
-        height: calc(100vh - 116px);
+        height: calc(100vh - 93px);
     }
 
     .display-4.logo-font.text-black {

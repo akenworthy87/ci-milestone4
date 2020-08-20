@@ -1,6 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-    
+    <div class="container">
+        <div class="row my-5 justify-content-center">
+            <h1>Purchase</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 text-center">
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=honey_jars,honey_bulk" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Honey</a>
+                </h4>
+            </div>
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=hives_frames,hives_parts,hives_nucs,hives_feeders" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Hives</a>
+                </h4>
+            </div>
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=bees_queens,bees_packages,bees_nucs" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Bees</a>
+                </h4>
+            </div>
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=equip_suits,equip_smokers,equip_tools,equip_jars,equip_books" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Equipment</a>
+                </h4>
+            </div>
+        </div>
+
+        <div class="row my-5 justify-content-center">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 text-center">
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=honey_jars,honey_bulk" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Honey</a>
+                </h4>
+            </div>
+            <div class="col">
+                <h4>
+                    <a href="{% url 'products' %}?category=hives_frames,hives_parts,hives_nucs,hives_feeders" class="home-nav-button btn btn-lg rounded-0 text-capitalize py-3">Hives</a>
+                </h4>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
