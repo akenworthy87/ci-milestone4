@@ -10,7 +10,7 @@ class ProductStockInline(admin.TabularInline):
 
 class ProductInfoAdmin(admin.ModelAdmin):
     list_display = (
-        'sku',
+        'skup1',
         'name',
         'category',
         'rating',

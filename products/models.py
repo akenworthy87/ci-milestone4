@@ -21,7 +21,7 @@ class ProductInfo(models.Model):
                                  on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    sku = models.CharField(max_length=254, null=True, blank=True)
+    skup1 = models.CharField(max_length=254, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
@@ -34,8 +34,9 @@ class ProductInfo(models.Model):
 
 
 class ProductStock(models.Model):
-    product = models.ForeignKey('ProductInfo', null=False, blank=False,
+    product = models.ForeignKey('ProductInfo', null=True, blank=True,
                                 on_delete=models.SET_NULL)
+    skup2 = models.CharField(max_length=254, null=True, blank=True)
     variety_friendly = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     stock_qty = models.IntegerField()
@@ -44,4 +45,4 @@ class ProductStock(models.Model):
                                                blank=True)
 
     def __str__(self):
-        return self.name
+        return self.variety_friendly
