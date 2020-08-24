@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <!-- Site CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="icon" type="image/svg" href="media/logo.svg">
+        <link rel="icon" type="image/svg" href="{{ MEDIA_URL }}logo.svg">
     {% endblock corecss %}
 
     <!-- CSS Extra -->
@@ -52,9 +52,9 @@
     <header class="container-fluid fixed-top">
         <div class="row bg-white pt-lg-2">
             <!-- Logo -->
-            <div class="col-12 col-lg-2 my-auto py-1 py-lg-0 text-center text-lg-left d-none d-lg-flex">
-                <a href="{% url 'home' %}" class="nav-link">
-                    <img src="/media/logo.svg" alt="Home" class="logo">
+            <div class="col-12 col-lg-2 my-auto py-1 py-lg-0 text-center d-none d-lg-block">
+                <a href="{% url 'home' %}">
+                    <img src="{{ MEDIA_URL }}logo.svg" alt="Home" class="logo">
                 </a>
             </div>
             <!-- Main nav elements -->
@@ -148,6 +148,7 @@
         </div>
     </header>
 
+    <!-- Toasts Messages -->
     {% if messages %}
         <div class="message-container">
             {% for message in messages %}
