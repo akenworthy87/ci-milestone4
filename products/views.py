@@ -10,7 +10,7 @@ from .models import ProductInfo, ProductStock, Category
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = ProductInfo.objects.all()
+    products = ProductInfo.objects.all().filter(product_discontinued=False)
     query = None
     categories = None
     sort = None
@@ -70,6 +70,11 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def product_management(request):
+    return redirect('/admin/products/')
 
 
 @login_required
