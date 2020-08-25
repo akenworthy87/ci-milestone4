@@ -40,8 +40,8 @@ class ProductStock(models.Model):
     skup2 = models.CharField(max_length=254, null=True, blank=True)
     variety_friendly = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    stock_qty = models.IntegerField()
-    stock_reserved = models.IntegerField()
+    stock_qty = models.IntegerField(default=0)
+    stock_reserved = models.IntegerField(default=0)
     variety_discontinued = models.BooleanField(default=False, null=True,
                                                blank=True)
 
