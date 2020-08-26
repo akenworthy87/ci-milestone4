@@ -45,7 +45,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for order in orders %}
+                            {% comment %} {% for order in orders %}
                                 <tr>
                                     <td>
                                         <a href="{% url 'order_history' order.order_number %}"
@@ -67,7 +67,7 @@
                                     </td>
                                     <td>${{ order.grand_total }}</td>
                                 </tr>
-                            {% endfor %}
+                            {% endfor %} {% endcomment %}
                         </tbody>
                     </table>
                 </div>
