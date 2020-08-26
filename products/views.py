@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, F, Min
 from django.db.models.functions import Lower
 
 from .models import ProductInfo, ProductStock, Category
@@ -10,7 +10,9 @@ from .models import ProductInfo, ProductStock, Category
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = ProductInfo.objects.all().filter(product_discontinued=False)
+    products = (ProductInfo.objects
+                .filter(product_discontinued=False)
+                .annotate(display_price=Min('productlines__price')))
     query = None
     categories = None
     sort = None
@@ -20,6 +22,8 @@ def all_products(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
+            if sortkey == 'price':
+                sortkey = 'display_price'
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
@@ -64,9 +68,13 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(ProductInfo, pk=product_id)
+    lines = (product.productlines
+             .filter(variety_discontinued=False)
+             .annotate(stock_avail=F('stock_qty') - F('stock_reserved')))
 
     context = {
         'product': product,
+        'lines': lines,
     }
 
     return render(request, 'products/product_detail.html', context)
