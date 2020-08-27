@@ -12,13 +12,16 @@ def contact(request):
 
     if request.method == 'POST':
         form = GeneralEnquiryForm(request.POST)
-        if request.user.is_authenticated:
-            profile = UserProfile.objects.get(user=request.user)
-            # Attach the user's profile to the form
-            form.user_profile = profile
 
         if form.is_valid():
-            form.save()
+            if request.user.is_authenticated:
+                profile = UserProfile.objects.get(user=request.user)
+                # Attach the user's profile to the form
+                linked_user = form.save(commit=False)
+                linked_user.user_profile = profile
+                linked_user.save()
+            else:
+                form.save()
             messages.success(request, 'Message sent successfully')
         else:
             messages.error(request,
