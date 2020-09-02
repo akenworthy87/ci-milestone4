@@ -64,8 +64,8 @@ body {
 .home-nav-button {
     background: rgb(44, 33, 2);
     color: white;
-    min-width: 260px;
-    min-height: 100px;
+    min-width: 130px;
+    min-height: 130px;
 }
 
 .btn-black {
