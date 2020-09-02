@@ -112,6 +112,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 ### Media
 
 - The photos used in this site were obtained from ...
+  - swarm.jpg sampled from [Buzz About Bees](https://www.buzzaboutbees.net/swarmingbees.html)
 
 ### Acknowledgements
 
