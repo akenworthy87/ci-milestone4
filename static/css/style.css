@@ -30,6 +30,31 @@ body {
     width: fit-content;
 }
 
+/* From CSS-Tricks:https://css-tricks.com/notched-boxes/ */
+.hexed, 
+.hexed-lg, 
+.hexed-sm {
+  --notchSize: 20px;
+  
+  clip-path: 
+    polygon(
+      0% var(--notchSize), 
+      var(--notchSize) 0%, 
+      calc(100% - var(--notchSize)) 0%, 
+      100% var(--notchSize), 
+      100% calc(100% - var(--notchSize)), 
+      calc(100% - var(--notchSize)) 100%, 
+      var(--notchSize) 100%, 
+      0% calc(100% - var(--notchSize))
+    );
+}
+.hexed-sm {
+    --notchSize: 10px
+}
+.hexed-lg {
+    --notchSize: 40px
+}
+
 .shop-now-button {
     background: black;
     color: white;
