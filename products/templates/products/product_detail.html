@@ -63,7 +63,7 @@
                             <!-- Variety selector -->
                             {% if not lines.count %}
                                 <div class="col-12">
-                                    <h5 class="text-danger mt-5"><strong><em>Sorry! No product lines availible.</em></strong></h5>
+                                    <h5 class="text-danger mt-4"><strong><em>Sorry! No product lines availible.</em></strong></h5>
                                 </div>
                             {% else %}
                                 <div class="col-12">
@@ -78,10 +78,10 @@
                                 </div>
                             {% endif %}
 
-                            <!-- Quantity selector -->
                             {% if lines.count %}
+                                <!-- Quantity selector -->
                                 <div class="col-12">
-                                    <p class="mt-3"><strong>Quantity (Availible: <span id="id_qty_avail"></span>):</strong></p>
+                                    <p class="mt-3"><strong>Quantity (Availible: <span id="id_qty_avail">#id_qty_avail</span>):</strong></p>
                                     <div class="form-group w-50">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -107,17 +107,23 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Price/Subtotal -->
+                                <div class="col-12">
+                                    <p class="mt-3 mb-1"><strong>Price Per:</strong> £<span id="id_price_span">#id_price_span</span></p>
+                                    <p class="mt-1"><strong>Sub-total:</strong> £<span id="id_subtotal_span">#id_price_span</span></p>
+                                </div>
                             {% endif %}
 
                             <!-- Cancel/Confirm buttons -->
-                            <div class="col{% if lines.count %}-12 mt-2{% endif %}">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                            <div class="col-12 mt-4">
+                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
-                                {% if lines.count %}<input disabled type="submit" id="id_submit_btn" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">{% endif %}
+                                {% if lines.count %}<input disabled type="submit" id="id_submit_btn" class="btn btn-black rounded-0 text-uppercase" value="Add to Bag">{% endif %}
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </div>

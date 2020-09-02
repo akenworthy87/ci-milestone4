@@ -1,12 +1,13 @@
 <script type="text/javascript">
 
+    // ##### Functions
     // Sets max value on quantity selector to variety's availible stock
     function handleVarietyChange(itemId) {
         var stockAvailible = parseInt($('#id_product_variety').find(':selected').data('stockavail'));
         var currentValue = parseInt($(`#id_qty_${itemId}`).val());
         $(`#id_qty_${itemId}`).attr("max", stockAvailible);
         $('#id_qty_avail').text(stockAvailible);
-        if(stockAvailible == 0) {
+        if(stockAvailible === 0) {
             $(`#id_qty_${itemId}`).prop('disabled', true);
             $('#id_submit_btn').prop('disabled', true);
         } else {
@@ -16,10 +17,12 @@
         if(currentValue > stockAvailible) {
             $(`#id_qty_${itemId}`).val(max(stockAvailible, 1));
         }
+        handlePriceDisplays(currentValue);
     }
 
     // Disable +/- buttons outside 1-99 range
     function handleEnableDisable(itemId) {
+        handleVarietyChange(itemId);
         var currentValue = parseInt($(`#id_qty_${itemId}`).val());
         var stockAvailible = parseInt($(`#id_qty_${itemId}`).attr("max"));
         var minusDisabled = currentValue < 2;
@@ -28,28 +31,18 @@
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
     }
 
-    // Ensure proper enabling/disabling of all inputs on page load
-    var allQtyInputs = $('.qty_input');
-    for(var i = 0; i < allQtyInputs.length; i++){
-        var itemId = $(allQtyInputs[i]).data('item_id');
-        handleEnableDisable(itemId);
-    }
+    // Sets displayed price per item and calcs subtotal display
+    function handlePriceDisplays(currentValue) { 
+        var pricePer = parseFloat($('#id_product_variety').find(':selected').data('price'));
+        $('#id_price_span').text(pricePer.toFixed(2));
+        $('#id_subtotal_span').text((pricePer * currentValue).toFixed(2));
+     }
 
-    // Check enable/disable every time the input is changed
-    $('.qty_input').change(function() {
-        var itemId = $(this).data('item_id');
-        handleEnableDisable(itemId);
-    });
 
-    $('#id_product_variety').change(function() {
-        var itemId = $(this).data('item_id');
-        handleVarietyChange(itemId);
-        handleEnableDisable(itemId);
-    }).change();
-
+    // #### Button Actions
     // Increment quantity
     $('.increment-qty').click(function(e) {
-       e.preventDefault();
+        e.preventDefault();
        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
        var currentValue = parseInt($(closestInput).val());
        $(closestInput).val(currentValue + 1);
@@ -59,11 +52,34 @@
 
     // Decrement quantity
     $('.decrement-qty').click(function(e) {
-       e.preventDefault();
+        e.preventDefault();
        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
        var currentValue = parseInt($(closestInput).val());
        $(closestInput).val(currentValue - 1);
        var itemId = $(this).data('item_id');
        handleEnableDisable(itemId);
     });
+
+
+    // ##### OnChanges
+    // Check enable/disable every time the input is changed
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    $('#id_product_variety').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+
+    // ##### OnLoads
+    // Ensure proper enabling/disabling of all inputs on page load
+    var allQtyInputs = $('.qty_input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
 </script>
