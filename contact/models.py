@@ -32,9 +32,9 @@ class Swarm(models.Model):
                                              null=False, blank=False)
     swarm_street_address2 = models.CharField(max_length=80,
                                              null=True, blank=True)
-    swarm_county = models.CharField(max_length=80, null=True, blank=True)
-    swarm_town_or_city = models.CharField(max_length=40, null=False,
+    swarm_city = models.CharField(max_length=40, null=False,
                                           blank=False)
+    swarm_county = models.CharField(max_length=80, null=True, blank=True)
     swarm_country = CountryField(blank_label='Country *', null=False,
                                  blank=False)
     swarm_postcode = models.CharField(max_length=20, null=True, blank=True)
