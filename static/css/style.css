@@ -49,7 +49,7 @@ body {
     );
 }
 .hexed-sm {
-    --notchSize: 10px
+    --notchSize: 12px
 }
 .hexed-lg {
     --notchSize: 40px

@@ -57,11 +57,11 @@
                                 <h5 class="card-title text-center">{{ product.name }}</h5>
                                 {% if product.image %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="card-img-top img-fluid border" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        <img class="card-img-top img-fluid border hexed-lg" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     </a>
                                 {% else %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="card-img-top img-fluid border" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                        <img class="card-img-top img-fluid border hexed-lg" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     </a>
                                 {% endif %}
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
