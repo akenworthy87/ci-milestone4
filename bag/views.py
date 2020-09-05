@@ -3,7 +3,7 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 
-from products.models import Product
+from products.models import ProductInfo, ProductStock
 
 
 def view_bag(request):
@@ -15,31 +15,31 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
 
-    product = get_object_or_404(Product, pk=item_id)
+    product = get_object_or_404(ProductInfo, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    size = None
-    if 'product_size' in request.POST:
-        size = request.POST['product_size']
+    variety = None
+    if 'product_variety' in request.POST:
+        variety = request.POST['product_variety']
     bag = request.session.get('bag', {})
 
-    if size:
+    if variety:
         if item_id in list(bag.keys()):
-            if size in bag[item_id]['items_by_size'].keys():
-                bag[item_id]['items_by_size'][size] += quantity
+            if variety in bag[item_id]['items_by_variety'].keys():
+                bag[item_id]['items_by_variety'][variety] += quantity
                 messages.success(request,
-                                 (f'Updated size {size.upper()} '
+                                 (f'Updated variety {variety.upper()} '
                                   f'{product.name} quantity to '
-                                  f'{bag[item_id]["items_by_size"][size]}'))
+                                  f'{bag[item_id]["items_by_variety"][variety]}'))
             else:
-                bag[item_id]['items_by_size'][size] = quantity
+                bag[item_id]['items_by_variety'][variety] = quantity
                 messages.success(request,
-                                 (f'Added size {size.upper()} '
+                                 (f'Added variety {variety.upper()} '
                                   f'{product.name} to your bag'))
         else:
-            bag[item_id] = {'items_by_size': {size: quantity}}
+            bag[item_id] = {'items_by_variety': {variety: quantity}}
             messages.success(request,
-                             (f'Added size {size.upper()} '
+                             (f'Added variety {variety.upper()} '
                               f'{product.name} to your bag'))
     else:
         if item_id in list(bag.keys()):
@@ -58,26 +58,26 @@ def add_to_bag(request, item_id):
 def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
-    product = get_object_or_404(Product, pk=item_id)
+    product = get_object_or_404(ProductInfo, pk=item_id)
     quantity = int(request.POST.get('quantity'))
-    size = None
-    if 'product_size' in request.POST:
-        size = request.POST['product_size']
+    variety = None
+    if 'product_variety' in request.POST:
+        variety = request.POST['product_variety']
     bag = request.session.get('bag', {})
 
-    if size:
+    if variety:
         if quantity > 0:
-            bag[item_id]['items_by_size'][size] = quantity
+            bag[item_id]['items_by_variety'][variety] = quantity
             messages.success(request,
-                             (f'Updated size {size.upper()} '
+                             (f'Updated variety {variety.upper()} '
                               f'{product.name} quantity to '
-                              f'{bag[item_id]["items_by_size"][size]}'))
+                              f'{bag[item_id]["items_by_variety"][variety]}'))
         else:
-            del bag[item_id]['items_by_size'][size]
-            if not bag[item_id]['items_by_size']:
+            del bag[item_id]['items_by_variety'][variety]
+            if not bag[item_id]['items_by_variety']:
                 bag.pop(item_id)
             messages.success(request,
-                             (f'Removed size {size.upper()} '
+                             (f'Removed variety {variety.upper()} '
                               f'{product.name} from your bag'))
     else:
         if quantity > 0:
@@ -99,18 +99,18 @@ def remove_from_bag(request, item_id):
     """Remove the item from the shopping bag"""
 
     try:
-        product = get_object_or_404(Product, pk=item_id)
-        size = None
-        if 'product_size' in request.POST:
-            size = request.POST['product_size']
+        product = get_object_or_404(ProductInfo, pk=item_id)
+        variety = None
+        if 'product_variety' in request.POST:
+            variety = request.POST['product_variety']
         bag = request.session.get('bag', {})
 
-        if size:
-            del bag[item_id]['items_by_size'][size]
-            if not bag[item_id]['items_by_size']:
+        if variety:
+            del bag[item_id]['items_by_variety'][variety]
+            if not bag[item_id]['items_by_variety']:
                 bag.pop(item_id)
             messages.success(request,
-                             (f'Removed size {size.upper()} '
+                             (f'Removed variety {variety.upper()} '
                               f'{product.name} from your bag'))
         else:
             bag.pop(item_id)
