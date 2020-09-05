@@ -24,15 +24,15 @@ def bag_contents(request):
             # })
         else:
             # product = get_object_or_404(ProductInfo, pk=item_id)
-            for variety, quantity in item_data['items_by_variety'].items():
-                line = get_object_or_404(ProductStock, pk=variety)
+            for variety_id, quantity in item_data['items_by_variety'].items():
+                line = get_object_or_404(ProductStock, pk=variety_id)
                 total += quantity * line.price
                 product_count += quantity
                 bag_items.append({
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': line.product,
-                    'variety': variety,
+                    'variety': variety_id,
                     'line': line,
                 })
 
