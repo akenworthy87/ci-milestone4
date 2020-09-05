@@ -33,6 +33,7 @@ def bag_contents(request):
                     'quantity': quantity,
                     'product': line.product,
                     'variety': variety,
+                    'line': line,
                 })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
