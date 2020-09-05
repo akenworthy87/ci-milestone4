@@ -10,10 +10,10 @@ class ProductStockInline(admin.TabularInline):
 
 class ProductInfoAdmin(admin.ModelAdmin):
     list_display = (
-        'skup1',
+        'id',
         'name',
+        'skup1',
         'category',
-        'rating',
         'image',
     )
 
@@ -30,5 +30,18 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
+class ProductLinesAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'variety_friendly',
+        'skup2',
+        'product',
+        'price',
+        'stock_qty',
+        'stock_reserved',
+    )
+
+
 admin.site.register(ProductInfo, ProductInfoAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(ProductStock, ProductLinesAdmin)
