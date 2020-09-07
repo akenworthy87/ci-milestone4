@@ -57,7 +57,7 @@
                             <a class="text-danger" href="{% url 'discontinue_product' product.id %}">Discontinue</a>
                         </small>
                     {% endif %}
-                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                    <form class="form" action="{% url 'add_to_bag' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
                             <!-- Variety selector -->

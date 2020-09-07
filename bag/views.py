@@ -3,7 +3,7 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 
-from products.models import ProductInfo, ProductStock
+from products.models import ProductStock
 
 
 def view_bag(request):
@@ -12,44 +12,35 @@ def view_bag(request):
     return render(request, 'bag/bag.html')
 
 
-def add_to_bag(request, item_id):
+def add_to_bag(request):
     """ Add a quantity of the specified product to the shopping bag """
 
-    product = get_object_or_404(ProductInfo, pk=item_id)
+    line_id = request.POST['product_variety']
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    variety = None
-    if 'product_variety' in request.POST:
-        variety = request.POST['product_variety']
+
+    line = get_object_or_404(ProductStock, pk=line_id)
     bag = request.session.get('bag', {})
 
-    if variety:
-        if item_id in list(bag.keys()):
-            if variety in bag[item_id]['items_by_variety'].keys():
-                bag[item_id]['items_by_variety'][variety] += quantity
-                messages.success(request,
-                                 (f'Updated variety {variety.upper()} '
-                                  f'{product.name} quantity to '
-                                  f'{bag[item_id]["items_by_variety"][variety]}'))
-            else:
-                bag[item_id]['items_by_variety'][variety] = quantity
-                messages.success(request,
-                                 (f'Added variety {variety.upper()} '
-                                  f'{product.name} to your bag'))
-        else:
-            bag[item_id] = {'items_by_variety': {variety: quantity}}
-            messages.success(request,
-                             (f'Added variety {variety.upper()} '
-                              f'{product.name} to your bag'))
+    if quantity < 1:
+        messages.error(
+            request,
+            "You can not add an item with zero quantity to the bag")
+        return redirect(redirect_url)
+
+    if line_id in list(bag.keys()):
+        bag[line_id] += quantity
+        messages.success(
+            request,
+            (f'Updated {line.variety_friendly.upper()} '
+                f'- {line.product.name} '
+                f'quantity to {bag[line_id]}'))
     else:
-        if item_id in list(bag.keys()):
-            bag[item_id] += quantity
-            messages.success(request,
-                             (f'Updated {product.name} '
-                              f'quantity to {bag[item_id]}'))
-        else:
-            bag[item_id] = quantity
-            messages.success(request, f'Added {product.name} to your bag')
+        bag[line_id] = quantity
+        messages.success(
+            request,
+            (f'Added {line.variety_friendly.upper()} '
+                f'- {line.product.name} to your bag'))
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -58,38 +49,23 @@ def add_to_bag(request, item_id):
 def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
-    product = get_object_or_404(ProductInfo, pk=item_id)
+    line = get_object_or_404(ProductStock, pk=item_id)
     quantity = int(request.POST.get('quantity'))
-    variety = None
-    if 'product_variety' in request.POST:
-        variety = request.POST['product_variety']
     bag = request.session.get('bag', {})
 
-    if variety:
-        if quantity > 0:
-            bag[item_id]['items_by_variety'][variety] = quantity
-            messages.success(request,
-                             (f'Updated variety {variety.upper()} '
-                              f'{product.name} quantity to '
-                              f'{bag[item_id]["items_by_variety"][variety]}'))
-        else:
-            del bag[item_id]['items_by_variety'][variety]
-            if not bag[item_id]['items_by_variety']:
-                bag.pop(item_id)
-            messages.success(request,
-                             (f'Removed variety {variety.upper()} '
-                              f'{product.name} from your bag'))
+    if quantity > 0:
+        bag[item_id] = quantity
+        messages.success(
+            request,
+            (f'Updated {line.variety_friendly.upper()} '
+                f'- {line.product.name} '
+                f'quantity to {bag[item_id]}'))
     else:
-        if quantity > 0:
-            bag[item_id] = quantity
-            messages.success(request,
-                             (f'Updated {product.name} '
-                              f'quantity to {bag[item_id]}'))
-        else:
-            bag.pop(item_id)
-            messages.success(request,
-                             (f'Removed {product.name} '
-                              f'from your bag'))
+        bag.pop(item_id)
+        messages.success(
+            request,
+            (f'Removed {line.variety_friendly.upper()} '
+                f'- {line.product.name} from your bag'))
 
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
@@ -99,22 +75,14 @@ def remove_from_bag(request, item_id):
     """Remove the item from the shopping bag"""
 
     try:
-        product = get_object_or_404(ProductInfo, pk=item_id)
-        variety = None
-        if 'product_variety' in request.POST:
-            variety = request.POST['product_variety']
+        line = get_object_or_404(ProductStock, pk=item_id)
         bag = request.session.get('bag', {})
 
-        if variety:
-            del bag[item_id]['items_by_variety'][variety]
-            if not bag[item_id]['items_by_variety']:
-                bag.pop(item_id)
-            messages.success(request,
-                             (f'Removed variety {variety.upper()} '
-                              f'{product.name} from your bag'))
-        else:
-            bag.pop(item_id)
-            messages.success(request, f'Removed {product.name} from your bag')
+        bag.pop(item_id)
+        messages.success(
+            request,
+            (f'Removed {line.variety_friendly.upper()} '
+                f'- {line.product.name} from your bag'))
 
         request.session['bag'] = bag
         return HttpResponse(status=200)
