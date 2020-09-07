@@ -1,3 +1,4 @@
+{% load bag_tools %}
 <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
     {% csrf_token %}
     <div class="form-group">
@@ -11,7 +12,7 @@
                 </button>
             </div>
             <input class="form-control form-control-sm qty_input" type="number"
-                name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.line.stock_qty | calc_stockavail:item.line.stock_reserved }}"
                 data-item_id="{{ item.item_id }}"
                 id="id_qty_{{ item.item_id }}">
             <div class="input-group-append">
