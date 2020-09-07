@@ -55,6 +55,10 @@ body {
     --notchSize: 40px
 }
 
+.bag-item-img {
+    max-height: 200px
+}
+
 .shop-now-button {
     background: black;
     color: white;
@@ -314,10 +318,15 @@ input[name='q']::placeholder {
     .header-container {
         padding-top: 132px;
     }
+
+    .bag-item-img {
+        max-height: 135px;
+    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
-@media (max-width: 991px) {
+/* The .5 is to fix the media query not apply at exactly 991px screen width on certain browsers */
+@media (max-width: 991.5px) {
     .header-container {
         padding-top: 93px;
     }
