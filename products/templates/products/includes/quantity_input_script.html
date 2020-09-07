@@ -3,21 +3,26 @@
     // ##### Functions
     // Sets max value on quantity selector to variety's availible stock
     function handleVarietyChange(itemId) {
-        var stockAvailible = parseInt($('#id_product_variety').find(':selected').data('stockavail'));
-        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
-        $(`#id_qty_${itemId}`).attr("max", stockAvailible);
-        $('#id_qty_avail').text(stockAvailible);
-        if(stockAvailible === 0) {
-            $(`#id_qty_${itemId}`).prop('disabled', true);
-            $('#id_submit_btn').prop('disabled', true);
-        } else {
-            $(`#id_qty_${itemId}`).prop('disabled', false);
-            $('#id_submit_btn').prop('disabled', false);
+        // Only executes this code product details page
+        // Checks it is on product details via checking for pressence of the variety selector
+        if($("#id_product_variety").length) {
+            var stockAvailible = parseInt($('#id_product_variety').find(':selected').data('stockavail'));
+            var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+            $(`#id_qty_${itemId}`).attr("max", stockAvailible);
+            $('#id_qty_avail').text(stockAvailible);
+            if(stockAvailible === 0) {
+                $(`#id_qty_${itemId}`).prop('disabled', true);
+                $('#id_submit_btn').prop('disabled', true);
+            } else {
+                $(`#id_qty_${itemId}`).prop('disabled', false);
+                $('#id_submit_btn').prop('disabled', false);
+            }
+            if(currentValue > stockAvailible) {
+                currentValue = Math.max(stockAvailible, 1)
+                $(`#id_qty_${itemId}`).val(currentValue);
+            }
+            handlePriceDisplays(currentValue);
         }
-        if(currentValue > stockAvailible) {
-            $(`#id_qty_${itemId}`).val(max(stockAvailible, 1));
-        }
-        handlePriceDisplays(currentValue);
     }
 
     // Disable +/- buttons outside 1-99 range
