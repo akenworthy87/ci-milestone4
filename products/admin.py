@@ -33,7 +33,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductLinesAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'variety_friendly',
+        'variety_name',
         'skup2',
         'product',
         'price',

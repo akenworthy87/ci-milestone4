@@ -74,7 +74,7 @@
                                                     {% if forloop.counter is 1 %}selected{% endif %} 
                                                     data-price="{{ line.price }}" 
                                                     data-stockavail="{{ line.get_stock_avail }}">
-                                                £{{line.price}} - {{line.variety_friendly}}
+                                                £{{line.price}} - {{line.variety_name}}
                                             </option>
                                         {% endfor %}
                                     </select>

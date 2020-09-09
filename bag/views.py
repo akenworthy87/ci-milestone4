@@ -42,7 +42,7 @@ def add_to_bag(request):
             bag[line_id] += quantity
             messages.success(
                 request,
-                (f'Updated {line.variety_friendly.upper()} '
+                (f'Updated {line.variety_name.upper()} '
                     f'- {line.product.name} '
                     f'quantity to {bag[line_id]}'))
     # Line not in bag; adds line to bag
@@ -58,7 +58,7 @@ def add_to_bag(request):
             bag[line_id] = quantity
             messages.success(
                 request,
-                (f'Added {line.variety_friendly.upper()} '
+                (f'Added {line.variety_name.upper()} '
                     f'- {line.product.name} to your bag'))
 
     request.session['bag'] = bag
@@ -81,14 +81,14 @@ def adjust_bag(request, line_id):
         bag[line_id] = quantity
         messages.success(
             request,
-            (f'Updated {line.variety_friendly.upper()} '
+            (f'Updated {line.variety_name.upper()} '
                 f'- {line.product.name} '
                 f'quantity to {bag[line_id]}'))
     else:
         bag.pop(line_id)
         messages.success(
             request,
-            (f'Removed {line.variety_friendly.upper()} '
+            (f'Removed {line.variety_name.upper()} '
                 f'- {line.product.name} from your bag'))
 
     request.session['bag'] = bag
@@ -105,7 +105,7 @@ def remove_from_bag(request, line_id):
         bag.pop(line_id)
         messages.success(
             request,
-            (f'Removed {line.variety_friendly.upper()} '
+            (f'Removed {line.variety_name.upper()} '
                 f'- {line.product.name} from your bag'))
 
         request.session['bag'] = bag
