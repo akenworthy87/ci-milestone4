@@ -29,8 +29,9 @@
     function handleEnableDisable(itemId) {
         handleVarietyChange(itemId);
         var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minValue = parseInt($(`#id_qty_${itemId}`).attr("min"));
         var stockAvailible = parseInt($(`#id_qty_${itemId}`).attr("max"));
-        var minusDisabled = currentValue < 2;
+        var minusDisabled = currentValue < (minValue + 1);
         var plusDisabled = currentValue >= stockAvailible;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
