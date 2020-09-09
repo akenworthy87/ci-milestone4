@@ -69,8 +69,7 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(ProductInfo, pk=product_id)
     lines = (product.productlines
-             .filter(variety_discontinued=False)
-             .annotate(stock_avail=F('stock_qty') - F('stock_reserved')))
+             .filter(variety_discontinued=False))
 
     context = {
         'product': product,

@@ -12,7 +12,7 @@
                 </button>
             </div>
             <input class="form-control form-control-sm qty_input" type="number"
-                name="quantity" value="{{ item.quantity }}" min="0" max="{{ item.line.stock_qty | calc_stockavail:item.line.stock_reserved }}"
+                name="quantity" value="{{ item.quantity }}" min="0" max="{{ item.line.get_stock_avail }}"
                 data-item_id="{{ item.line.id }}"
                 id="id_qty_{{ item.line.id }}">
             <div class="input-group-append">

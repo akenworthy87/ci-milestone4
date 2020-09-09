@@ -70,7 +70,10 @@
                                     <p><strong>Variety:</strong></p>
                                     <select class="form-control rounded-0 w-50" name="product_variety" id="id_product_variety" data-item_id="{{ product.id }}" required>
                                         {% for line in lines %}
-                                            <option value="{{ line.id }}" {% if forloop.counter is 1 %}selected{% endif %} data-price="{{ line.price }}" data-stockavail="{{ line.stock_avail }}">
+                                            <option value="{{ line.id }}" 
+                                                    {% if forloop.counter is 1 %}selected{% endif %} 
+                                                    data-price="{{ line.price }}" 
+                                                    data-stockavail="{{ line.get_stock_avail }}">
                                                 £{{line.price}} - {{line.variety_friendly}}
                                             </option>
                                         {% endfor %}
