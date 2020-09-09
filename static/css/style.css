@@ -71,6 +71,9 @@ body {
     min-width: 130px;
     min-height: 130px;
 }
+.home-nav-button:hover {
+    color: rgb(200, 200, 200);
+}
 
 .btn-black {
     background: black;
