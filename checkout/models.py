@@ -6,7 +6,7 @@ from django.conf import settings
 
 from django_countries.fields import CountryField
 
-from products.models import Product
+from products.models import ProductStock
 from profiles.models import UserProfile
 
 
@@ -72,8 +72,8 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
-                              related_name='lineitems')
-    product = models.ForeignKey(Product, null=False, blank=False,
+                              related_name='orderlineitems')
+    product = models.ForeignKey(ProductStock, null=False, blank=False,
                                 on_delete=models.CASCADE)
     product_size = models.CharField(max_length=2, null=True,
                                     blank=True)  # XS, S, M, L, XL
