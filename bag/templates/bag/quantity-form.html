@@ -1,11 +1,11 @@
 {% load bag_tools %}
-<form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+<form class="form update-form" method="POST" action="{% url 'adjust_bag' item.line.id %}">
     {% csrf_token %}
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    data-item_id="{{ item.line.id }}" id="decrement-qty_{{ item.line.id }}">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
@@ -13,11 +13,11 @@
             </div>
             <input class="form-control form-control-sm qty_input" type="number"
                 name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.line.stock_qty | calc_stockavail:item.line.stock_reserved }}"
-                data-item_id="{{ item.item_id }}"
-                id="id_qty_{{ item.item_id }}">
+                data-item_id="{{ item.line.id }}"
+                id="id_qty_{{ item.line.id }}">
             <div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-black rounded-0"
-                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    data-item_id="{{ item.line.id }}" id="increment-qty_{{ item.line.id }}">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
                     </span>
@@ -28,4 +28,4 @@
     </div>
 </form>
 <a class="update-link text-info"><small>Update</small></a>
-<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+<a class="remove-item text-danger float-right" id="remove_{{ item.line.id }}"><small>Remove</small></a>

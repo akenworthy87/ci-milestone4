@@ -10,15 +10,13 @@ def bag_contents(request):
     total = 0
     product_count = 0
     bag = request.session.get('bag', {})
-    print(bag.items())
+
     for line_id, quantity in bag.items():
         line = get_object_or_404(ProductStock, pk=line_id)
         total += quantity * line.price
         product_count += quantity
         bag_items.append({
             'quantity': quantity,
-            'product': line.product,
-            'item_id': line_id,
             'line': line,
         })
 

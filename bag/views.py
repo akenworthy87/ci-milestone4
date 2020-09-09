@@ -8,7 +8,6 @@ from products.models import ProductStock
 
 def view_bag(request):
     """ A view that renders the bag contents page """
-
     return render(request, 'bag/bag.html')
 
 
@@ -22,46 +21,71 @@ def add_to_bag(request):
     line = get_object_or_404(ProductStock, pk=line_id)
     bag = request.session.get('bag', {})
 
+    # Checks if quantity is greater than zero, rejects with error if not
     if quantity < 1:
         messages.error(
             request,
             "You can not add an item with zero quantity to the bag")
         return redirect(redirect_url)
 
+    # First checks if line is already in the bag
+    # Line in bag already; updates existing bag entry
     if line_id in list(bag.keys()):
-        bag[line_id] += quantity
+        # Checks submitted quantity does not exceed stock availibilty
+        if bag[line_id] + quantity > line.get_stock_avail():
+            messages.error(
+                request,
+                "You can not add more stock than is availible.")
+            return redirect(redirect_url)
+        else:
+            # Updates existing bag entry
+            bag[line_id] += quantity
+            messages.success(
+                request,
+                (f'Updated {line.variety_friendly.upper()} '
+                    f'- {line.product.name} '
+                    f'quantity to {bag[line_id]}'))
+    # Line not in bag; adds line to bag
+    else:
+        # Checks submitted quantity does not exceed stock availibilty
+        if quantity > line.get_stock_avail():
+            messages.error(
+                request,
+                "You can not add more stock than is availible.")
+            return redirect(redirect_url)
+        else:
+            # Adds line as new entry in bag
+            bag[line_id] = quantity
+            messages.success(
+                request,
+                (f'Added {line.variety_friendly.upper()} '
+                    f'- {line.product.name} to your bag'))
+
+    request.session['bag'] = bag
+    return redirect(redirect_url)
+
+
+def adjust_bag(request, line_id):
+    """Adjust the quantity of the specified product to the specified amount"""
+
+    line = get_object_or_404(ProductStock, pk=line_id)
+    quantity = int(request.POST.get('quantity'))
+    bag = request.session.get('bag', {})
+
+    if quantity > 0:
+        if quantity > line.get_stock_avail():
+            messages.error(
+                request,
+                "You can not add more stock than is availible.")
+            return redirect(reverse('view_bag'))
+        bag[line_id] = quantity
         messages.success(
             request,
             (f'Updated {line.variety_friendly.upper()} '
                 f'- {line.product.name} '
                 f'quantity to {bag[line_id]}'))
     else:
-        bag[line_id] = quantity
-        messages.success(
-            request,
-            (f'Added {line.variety_friendly.upper()} '
-                f'- {line.product.name} to your bag'))
-
-    request.session['bag'] = bag
-    return redirect(redirect_url)
-
-
-def adjust_bag(request, item_id):
-    """Adjust the quantity of the specified product to the specified amount"""
-
-    line = get_object_or_404(ProductStock, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
-    bag = request.session.get('bag', {})
-
-    if quantity > 0:
-        bag[item_id] = quantity
-        messages.success(
-            request,
-            (f'Updated {line.variety_friendly.upper()} '
-                f'- {line.product.name} '
-                f'quantity to {bag[item_id]}'))
-    else:
-        bag.pop(item_id)
+        bag.pop(line_id)
         messages.success(
             request,
             (f'Removed {line.variety_friendly.upper()} '
@@ -71,14 +95,14 @@ def adjust_bag(request, item_id):
     return redirect(reverse('view_bag'))
 
 
-def remove_from_bag(request, item_id):
+def remove_from_bag(request, line_id):
     """Remove the item from the shopping bag"""
 
     try:
-        line = get_object_or_404(ProductStock, pk=item_id)
+        line = get_object_or_404(ProductStock, pk=line_id)
         bag = request.session.get('bag', {})
 
-        bag.pop(item_id)
+        bag.pop(line_id)
         messages.success(
             request,
             (f'Removed {line.variety_friendly.upper()} '

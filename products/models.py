@@ -47,3 +47,6 @@ class ProductStock(models.Model):
 
     def __str__(self):
         return self.variety_friendly
+
+    def get_stock_avail(self):
+        return self.stock_qty - self.stock_reserved
