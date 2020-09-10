@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import OrderForm
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineItem, OrderStatus
 
 from products.models import ProductStock
 from profiles.models import UserProfile
@@ -43,15 +43,15 @@ def checkout(request):
         bag = request.session.get('bag', {})
 
         form_data = {
-            'full_name': request.POST['full_name'],
+            'name_full': request.POST['name_full'],
             'email': request.POST['email'],
-            'phone_number': request.POST['phone_number'],
-            'country': request.POST['country'],
-            'postcode': request.POST['postcode'],
-            'town_or_city': request.POST['town_or_city'],
+            'tel': request.POST['tel'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
+            'city': request.POST['city'],
             'county': request.POST['county'],
+            'country': request.POST['country'],
+            'postcode': request.POST['postcode'],
         }
 
         order_form = OrderForm(form_data)
@@ -63,24 +63,14 @@ def checkout(request):
             order.save()
             for item_id, item_data in bag.items():
                 try:
-                    product = ProductStock.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                                product_size=size,
-                            )
-                            order_line_item.save()
-                except Product.DoesNotExist:
+                    product_line = ProductStock.objects.get(id=item_id)
+                    order_line_item = OrderLineItem(
+                        order=order,
+                        product_line=product_line,
+                        quantity=item_data,
+                    )
+                    order_line_item.save()
+                except product_line.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your bag wasn't "
                         "found in our database. "
@@ -118,15 +108,15 @@ def checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
+                    'name_full': profile.user.get_full_name(),
                     'email': profile.user.email,
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
+                    'tel': profile.user_tel,
+                    'street_address1': profile.user_street_address1,
+                    'street_address2': profile.user_street_address2,
+                    'county': profile.user_county,
+                    'city': profile.user_city,
+                    'country': profile.user_country,
+                    'postcode': profile.user_postcode,
                 })
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
@@ -164,13 +154,13 @@ def checkout_success(request, order_number):
         # Save the user's info
         if save_info:
             profile_data = {
-                'default_phone_number': order.phone_number,
-                'default_country': order.country,
-                'default_postcode': order.postcode,
-                'default_town_or_city': order.town_or_city,
-                'default_street_address1': order.street_address1,
-                'default_street_address2': order.street_address2,
-                'default_county': order.county,
+                'user_tel': order.tel,
+                'user_street_address1': order.street_address1,
+                'user_street_address2': order.street_address2,
+                'user_city': order.city,
+                'user_county': order.county,
+                'user_country': order.country,
+                'user_postcode': order.postcode,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
