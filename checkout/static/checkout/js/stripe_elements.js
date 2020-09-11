@@ -31,6 +31,7 @@ card.mount('#card-element');
 // Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
+    // if error returned, display message in error div
     if (event.error) {
         var html = `
             <span class="icon" role="alert">
@@ -48,9 +49,9 @@ card.addEventListener('change', function (event) {
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
-    ev.preventDefault();
+    ev.preventDefault();    // prevents normal POST submit function
     card.update({ 'disabled': true});
-    $('#submit-button').attr('disabled', true);
+    $('#submit-button').attr('disabled', true);   // prevents multiple submissions
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
@@ -94,6 +95,8 @@ form.addEventListener('submit', function(ev) {
                 }
             },
         }).then(function(result) {
+            // if error returned, display message in error div
+            // then re-enable submit button 
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
