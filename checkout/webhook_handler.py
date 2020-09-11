@@ -106,7 +106,7 @@ class StripeWH_Handler:
                 status=200)
         else:
             order = None
-            pending_status = OrderStatus.objects.get(order_status="pending")
+            pending_status = OrderStatus.objects.get(status_code="pending")
             try:
                 order = Order.objects.create(
                     name_full=shipping_details.name,
