@@ -89,7 +89,7 @@ class StripeWH_Handler:
                     county__iexact=shipping_details.address.state,
                     country__iexact=shipping_details.address.country,
                     postcode__iexact=shipping_details.address.postal_code,
-                    grand_total=grand_total,
+                    cost_grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
@@ -99,6 +99,9 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
+            pending_status = OrderStatus.objects.get(status_code="pending")
+            order.order_status = pending_status
+            order.save()
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=(f'Webhook received: {event["type"]} | SUCCESS: '
