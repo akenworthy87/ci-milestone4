@@ -48,7 +48,16 @@
                             <p class="mb-0 text-black font-weight-bold">Order Date</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.date }}</p>
+                            <p class="mb-0">{{ order.order_date }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="mb-0 text-black font-weight-bold">Order Status</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0"><em>{{ order.order_status.get_friendly_name }}</em></p>
                         </div>
                     </div>
 
@@ -62,11 +71,11 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="small mb-0 text-black font-weight-bold">
-                                {{ item.product_line.product.name }} - {{ item.product_line.variety_name|upper }}{% endif %}
+                                {{ item.product_line.product.name }} - {{ item.product_line.variety_name|upper }}
                             </p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="small mb-0">{{ item.quantity }} @ ${{ item.product_line.price }} each</p>
+                            <p class="small mb-0">{{ item.quantity }} @ £{{ item.product_line.price }} each</p>
                         </div>
                     </div>
                     {% endfor %}
@@ -166,7 +175,7 @@
                             <p class="mb-0 text-black font-weight-bold">Order Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">${{ order.cost_total }}</p>
+                            <p class="mb-0">£{{ order.cost_total }}</p>
                         </div>
                     </div>
 
@@ -175,7 +184,7 @@
                             <p class="mb-0 text-black font-weight-bold">Delivery</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">${{ order.cost_delivery }}</p>
+                            <p class="mb-0">£{{ order.cost_delivery }}</p>
                         </div>
                     </div>
 
@@ -184,7 +193,7 @@
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">${{ order.cost_grand_total }}</p>
+                            <p class="mb-0">£{{ order.cost_grand_total }}</p>
                         </div>
                     </div>
                 </div>
