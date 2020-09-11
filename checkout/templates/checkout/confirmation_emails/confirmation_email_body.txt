@@ -3,11 +3,11 @@ Hello {{ order.name_full }}!
 This is a confirmation of your order at Boutique Ado. Your order information is below:
 
 Order Number: {{ order.order_number }}
-Order Date: {{ order.date }}
+Order Date: {{ order.order_date }}
 
-Order Total: ${{ order.cost_total }}
-Delivery: ${{ order.cost_delivery }}
-Grand Total: ${{ order.cost_grand_total }}
+Order Total: £{{ order.cost_total }}
+Delivery: £{{ order.cost_delivery }}
+Grand Total: £{{ order.cost_grand_total }}
 
 Your order will be shipped to {{ order.street_address1 }} in {{ order.city }}, {{ order.country }}.
 
