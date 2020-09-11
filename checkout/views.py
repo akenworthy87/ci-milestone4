@@ -68,6 +68,7 @@ def checkout(request):
             order.original_bag = json.dumps(bag)
             # Sets order_status to Processing
             order.order_status = processing_status
+            order.creation_method = 'View'
             order.save()
             # Attach the Line Items to the Order
             for item_id, item_data in bag.items():

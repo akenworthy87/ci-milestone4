@@ -115,6 +115,7 @@ class StripeWH_Handler:
                     name_full=shipping_details.name,
                     user_profile=profile,
                     order_status=pending_status,
+                    creation_method='Webhook',
                     email=billing_details.email,
                     tel=shipping_details.phone,
                     street_address1=shipping_details.address.line1,
