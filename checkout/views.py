@@ -58,14 +58,16 @@ def checkout(request):
 
         # Check form data is valid
         order_form = OrderForm(form_data)
-        pending_status = OrderStatus.objects.get(order_status="pending")
+        processing_status = OrderStatus.objects.get(status_code="processing")
         if order_form.is_valid():
             # Create the Order record
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
+            # Stores a record of the bag data
             order.original_bag = json.dumps(bag)
-            order.order_status = pending_status
+            # Sets order_status to Processing
+            order.order_status = processing_status
             order.save()
             # Attach the Line Items to the Order
             for item_id, item_data in bag.items():
