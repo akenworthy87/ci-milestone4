@@ -75,6 +75,7 @@ def checkout(request):
                 # Check Bag line item is an existing product line...
                 try:
                     product_line = ProductStock.objects.get(id=item_id)
+                    product_line.reserve_stock(item_data)
                     order_line_item = OrderLineItem(
                         order=order,
                         product_line=product_line,
@@ -89,6 +90,10 @@ def checkout(request):
                         "found in our database. "
                         "Please call us for assistance!")
                     )
+                    order.delete()
+                    return redirect(reverse('view_bag'))
+                except ValueError as e:
+                    messages.error(request, e)
                     order.delete()
                     return redirect(reverse('view_bag'))
 
