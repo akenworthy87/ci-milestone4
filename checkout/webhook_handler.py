@@ -77,6 +77,7 @@ class StripeWH_Handler:
 
         order_exists = False
         attempt = 1
+        # Tries to find existing order, attempts 5 times
         while attempt <= 5:
             try:
                 order = Order.objects.get(
@@ -98,6 +99,7 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+        # If order found: changes status to 'Pending', send email confirmation
         if order_exists:
             pending_status = OrderStatus.objects.get(status_code="pending")
             order.order_status = pending_status
@@ -107,10 +109,13 @@ class StripeWH_Handler:
                 content=(f'Webhook received: {event["type"]} | SUCCESS: '
                          'Verified order already in database'),
                 status=200)
+        # If order not found: attempts to create it
         else:
             order = None
             pending_status = OrderStatus.objects.get(status_code="pending")
+            print("WH attempting to create order")
             try:
+                # Sets order details
                 order = Order.objects.create(
                     name_full=shipping_details.name,
                     user_profile=profile,
@@ -127,20 +132,30 @@ class StripeWH_Handler:
                     original_bag=bag,
                     stripe_pid=pid,
                 )
+                # Attaches order line items
                 for item_id, item_data in json.loads(bag).items():
                     product_line = ProductStock.objects.get(id=item_id)
+                    product_line.reserve_stock(item_data)
                     order_line_item = OrderLineItem(
                         order=order,
                         product_line=product_line,
                         quantity=item_data,
                     )
                     order_line_item.save()
+            # Deletes order if anything goes wrong
+            except ValueError as e:
+                if order:
+                    order.delete()
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    status=500)
             except Exception as e:
                 if order:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
+        # Send confirmation email if everything okay
         self._send_confirmation_email(order)
         return HttpResponse(
             content=(f'Webhook received: {event["type"]} | SUCCESS: '
