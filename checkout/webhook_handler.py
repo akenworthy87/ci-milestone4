@@ -10,6 +10,8 @@ from profiles.models import UserProfile
 import json
 import time
 
+from stripe import PaymentIntent
+
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
@@ -42,9 +44,9 @@ class StripeWH_Handler:
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
 
-    def handle_payment_intent_succeeded(self, event):
+    def handle_payment_intent_amount_capturable_updated(self, event):
         """
-        Handle the payment_intent.succeeded webhook from Stripe
+        Handle the payment_intent.amount_capturable_updated webhook from Stripe
         """
         intent = event.data.object
         pid = intent.id
@@ -113,7 +115,6 @@ class StripeWH_Handler:
         else:
             order = None
             pending_status = OrderStatus.objects.get(status_code="pending")
-            print("WH attempting to create order")
             try:
                 # Sets order details
                 order = Order.objects.create(
@@ -146,9 +147,10 @@ class StripeWH_Handler:
             except ValueError as e:
                 if order:
                     order.delete()
+                PaymentIntent.cancel(pid, cancellation_reason='abandoned')
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
+                    status=200)
             except Exception as e:
                 if order:
                     order.delete()

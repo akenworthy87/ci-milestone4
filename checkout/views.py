@@ -16,6 +16,8 @@ from bag.contexts import bag_contents
 import stripe
 import json
 
+from stripe import PaymentIntent
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -75,6 +77,7 @@ def checkout(request):
                 # Check Bag line item is an existing product line...
                 try:
                     product_line = ProductStock.objects.get(id=item_id)
+                    # Penultimate stock check
                     product_line.reserve_stock(item_data)
                     order_line_item = OrderLineItem(
                         order=order,
@@ -91,14 +94,17 @@ def checkout(request):
                         "Please call us for assistance!")
                     )
                     order.delete()
+                    PaymentIntent.cancel(pid, cancellation_reason='abandoned')
                     return redirect(reverse('view_bag'))
                 except ValueError as e:
                     messages.error(request, e)
                     order.delete()
+                    PaymentIntent.cancel(pid, cancellation_reason='abandoned')
                     return redirect(reverse('view_bag'))
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
+            PaymentIntent.capture(pid)
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         # Error if form is invalid
@@ -116,6 +122,25 @@ def checkout(request):
                            "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
+        # Checking bag contents and stock pre-check
+        for item_id, item_data in bag.items():
+            # Check Bag line item is an existing product line...
+            try:
+                product_line = ProductStock.objects.get(id=item_id)
+                product_line.reserve_stock(item_data, dry_run=True)
+            # ... reject with error if product line not found
+            except product_line.DoesNotExist:
+                messages.error(request, (
+                    "One of the products in your bag wasn't "
+                    "found in our database. "
+                    "Please call us for assistance!")
+                )
+                return redirect(reverse('view_bag'))
+            # Raise error if stock check fails
+            except ValueError as e:
+                messages.error(request, e)
+                return redirect(reverse('view_bag'))
+
         # Gets bag context object
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
@@ -125,6 +150,7 @@ def checkout(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
+            capture_method='manual'
         )
 
         # Attempt to prefill the form with any info

@@ -52,7 +52,7 @@ class ProductStock(models.Model):
         """ Returns the availible stock quantity """
         return self.stock_qty - self.stock_reserved
 
-    def reserve_stock(self, quantity):
+    def reserve_stock(self, quantity, dry_run=False):
         """
         Attempts to reserve stock by specified quantity.
         First checks quantity is availible, raises ValueError if not.
@@ -63,6 +63,6 @@ class ProductStock(models.Model):
                 f"Requested quantity({quantity}) is higher "
                 f"than availible({self.get_stock_avail()}) "
                 f"for {self.variety_name} - {self.product.name}")
-        else:
+        elif dry_run is False:
             self.stock_reserved += quantity
             self.save()
