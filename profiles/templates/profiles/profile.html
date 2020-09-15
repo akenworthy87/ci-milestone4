@@ -45,7 +45,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% comment %} {% for order in orders %}
+                            {% for order in orders %}
                                 <tr>
                                     <td>
                                         <a href="{% url 'order_history' order.order_number %}"
@@ -53,21 +53,20 @@
                                             {{ order.order_number|truncatechars:6 }}
                                         </a>
                                     </td>
-                                    <td>{{ order.date }}</td>
+                                    <td>{{ order.order_date }}</td>
                                     <td>
                                         <ul class="list-unstyled">
-                                            {% for item in order.lineitems.all %}
+                                            {% for item in order.orderlineitems.all %}
                                                 <li class="small">
-                                                    {% if item.product.has_sizes %}
-                                                        Size {{ item.product.size|upper }}
-                                                    {% endif %}{{ item.product.name }} x{{ item.quantity }}
+                                                    <span class="text-muted">{{ item.product_line.product.name }}</span><br>
+                                                    {{ item.product_line.variety_name }} x{{ item.quantity }}
                                                 </li>
                                             {% endfor %}
                                         </ul>
                                     </td>
-                                    <td>${{ order.grand_total }}</td>
+                                    <td>£{{ order.cost_grand_total }}</td>
                                 </tr>
-                            {% endfor %} {% endcomment %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
