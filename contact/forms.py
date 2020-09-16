@@ -57,10 +57,7 @@ class SwarmForm(forms.ModelForm):
             'swarm_city': 'City',
             'swarm_county': 'County',
             'swarm_postcode': 'Post Code',
-            'swarm_message':
-                'Please enter useful information about the swarm, such as: '
-                'Location on property, approximate height, how long the swarm'
-                'has been there, if bees are flying or clustered, etc',
+            'swarm_message': 'Please enter your message here',
         }
 
         self.fields['contact_name_full'].widget.attrs['autofocus'] = True
