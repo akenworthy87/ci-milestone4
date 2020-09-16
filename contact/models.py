@@ -33,10 +33,10 @@ class Swarm(models.Model):
     swarm_street_address2 = models.CharField(max_length=80,
                                              null=True, blank=True)
     swarm_city = models.CharField(max_length=40, null=False,
-                                          blank=False)
+                                  blank=False)
     swarm_county = models.CharField(max_length=80, null=True, blank=True)
     swarm_country = CountryField(blank_label='Country *', null=False,
-                                 blank=False)
+                                 blank=False, default='GB')
     swarm_postcode = models.CharField(max_length=20, null=True, blank=True)
     swarm_message = models.TextField()
 
