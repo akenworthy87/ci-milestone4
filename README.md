@@ -113,6 +113,9 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 - The photos used in this site were obtained from ...
   - swarm.jpg sampled from [Buzz About Bees](https://www.buzzaboutbees.net/swarmingbees.html)
+  - bees.jpg from [Undark](https://undark.org/2016/05/24/evolving-a-better-honey-bee-how-wild-bees-resist-the-varroa-mite/)
+  - noimage.png taken from Code Institute course materials
+  - logo.svg original work by me, Andrew Kenworthy
 
 ### Acknowledgements
 

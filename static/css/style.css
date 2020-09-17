@@ -35,9 +35,11 @@ html {
 }
 
 body {
+    background: url('/media/bees.jpg') no-repeat center fixed;
+    background-size: cover;
     height: calc(100vh - 132px);
     color: var(--comb-cocoon);
-    background-color: var(--comb-honey);
+    background-color: var(--comb-wax);
     font-family: 'Lato';
 }
 
