@@ -5,7 +5,7 @@
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-prepend">
-                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                <button class="decrement-qty btn btn-sm btn-black rounded-0 hexed-xs" 
                         data-item_id="{{ item.line.id }}" 
                         id="decrement-qty_{{ item.line.id }}">
                     <span>
@@ -16,17 +16,13 @@
             <input class="form-control form-control-sm qty_input {% if item.quantity > stock_avail %}is-invalid{% endif %}" 
                     type="number"
                     name="quantity"
-                    value={% if item.quantity < stock_avail %}
-                                {{ item.quantity}}
-                            {% else %}
-                                {{ stock_avail }}
-                            {% endif %}
+                    value={% if item.quantity < stock_avail %}{{ item.quantity}}{% else %}{{ stock_avail }}{% endif %}
                     min="0"
                     max="{{ stock_avail }}"
                     data-item_id="{{ item.line.id }}"
                     id="id_qty_{{ item.line.id }}">
             <div class="input-group-append">
-                <button class="increment-qty btn btn-sm btn-black rounded-0"
+                <button class="increment-qty btn btn-sm btn-black rounded-0 hexed-xs"
                         data-item_id="{{ item.line.id }}" 
                         id="increment-qty_{{ item.line.id }}">
                     <span>
