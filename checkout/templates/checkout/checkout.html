@@ -41,9 +41,9 @@
                         <div class="col-2 mb-1">
                             <a href="{% url 'product_detail' item.line.product.id %}">
                                 {% if item.line.product.image %}
-                                    <img class="w-100" src="{{ item.line.product.image.url }}" alt="{{ item.line.product.name }}">
+                                    <img class="w-100 hexed-sm" src="{{ item.line.product.image.url }}" alt="{{ item.line.product.name }}">
                                 {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.line.product.name }}">
+                                    <img class="w-100 hexed-sm" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.line.product.name }}">
                                 {% endif %}
                             </a>
                         </div>
@@ -118,7 +118,7 @@
 							</span>
 							<span class="font-weight-bold">Adjust Bag</span>
 						</a>
-						<button id="submit-button" class="btn btn-black rounded-0">
+						<button id="submit-button" class="btn btn-black rounded-0 hexed-sm">
 							<span class="font-weight-bold">Complete Order</span>
 							<span class="icon">
 								<i class="fas fa-lock"></i>
