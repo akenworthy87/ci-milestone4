@@ -16,7 +16,7 @@
             <input class="form-control form-control-sm qty_input {% if item.quantity > stock_avail %}is-invalid{% endif %}" 
                     type="number"
                     name="quantity"
-                    value={% if item.quantity < stock_avail %}{{ item.quantity}}{% else %}{{ stock_avail }}{% endif %}
+                    value="{% if item.quantity < stock_avail %}{{ item.quantity}}{% else %}{{ stock_avail }}{% endif %}"
                     min="0"
                     max="{{ stock_avail }}"
                     data-item_id="{{ item.line.id }}"
@@ -36,6 +36,6 @@
         </div>
     </div>
 </form>
-<a class="update-link text-info"><small>Update</small></a>
+<a class="update-link"><small>Update</small></a>
 <a class="remove-item text-danger float-right" id="remove_{{ item.line.id }}"><small>Remove</small></a>
 {% endwith %}

@@ -37,6 +37,13 @@
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
     }
 
+    function lightUpdateLink(caller) {
+        var closestUpdateLink = caller.closest('.update-form').next('.update-link')[0];
+        if(closestUpdateLink) {
+            $(closestUpdateLink).addClass("text-primary text-uppercase font-weight-bold font-italic")
+        }
+    }
+
     // Sets displayed price per item and calcs subtotal display
     function handlePriceDisplays(currentValue) { 
         var pricePer = parseFloat($('#id_product_variety').find(':selected').data('price'));
@@ -49,21 +56,23 @@
     // Increment quantity
     $('.increment-qty').click(function(e) {
         e.preventDefault();
-       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-       var currentValue = parseInt($(closestInput).val());
-       $(closestInput).val(currentValue + 1);
-       var itemId = $(this).data('item_id');
-       handleEnableDisable(itemId);
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue + 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+        lightUpdateLink($(this));
     });
 
     // Decrement quantity
     $('.decrement-qty').click(function(e) {
         e.preventDefault();
-       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-       var currentValue = parseInt($(closestInput).val());
-       $(closestInput).val(currentValue - 1);
-       var itemId = $(this).data('item_id');
-       handleEnableDisable(itemId);
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue - 1);
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+        lightUpdateLink($(this));
     });
 
 
@@ -72,6 +81,7 @@
     $('.qty_input').change(function() {
         var itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
+        lightUpdateLink($(this));
     });
 
     $('#id_product_variety').change(function() {
