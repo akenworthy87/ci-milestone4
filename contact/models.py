@@ -13,7 +13,7 @@ class GeneralEnquiry(models.Model):
     contact_email = models.EmailField(max_length=254, null=False, blank=False)
     contact_tel = models.CharField(max_length=20, null=False, blank=False)
     contact_date = models.DateTimeField(auto_now_add=True)
-    enquiry_message = models.TextField()
+    message_body = models.TextField()
 
     def __str__(self):
         return str(self.id)
@@ -38,7 +38,7 @@ class Swarm(models.Model):
     swarm_country = CountryField(blank_label='Country *', null=False,
                                  blank=False, default='GB')
     swarm_postcode = models.CharField(max_length=20, null=True, blank=True)
-    swarm_message = models.TextField()
+    message_body = models.TextField()
 
     def __str__(self):
         return str(self.id)

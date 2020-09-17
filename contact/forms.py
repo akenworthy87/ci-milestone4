@@ -6,7 +6,7 @@ class GeneralEnquiryForm(forms.ModelForm):
     class Meta:
         model = GeneralEnquiry
         fields = ('contact_name_full', 'contact_email', 'contact_tel',
-                  'enquiry_message',)
+                  'message_body',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -18,7 +18,7 @@ class GeneralEnquiryForm(forms.ModelForm):
             'contact_name_full': 'Full Name',
             'contact_email': 'Email Address',
             'contact_tel': 'Phone Number',
-            'enquiry_message': 'Please enter your message here',
+            'message_body': 'Please enter your message here',
         }
 
         self.fields['contact_name_full'].widget.attrs['autofocus'] = True
@@ -40,7 +40,7 @@ class SwarmForm(forms.ModelForm):
         fields = ('contact_name_full', 'contact_email', 'contact_tel',
                   'swarm_street_address1', 'swarm_street_address2',
                   'swarm_city', 'swarm_county', 'swarm_country',
-                  'swarm_postcode', 'swarm_message',)
+                  'swarm_postcode', 'message_body',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -57,7 +57,7 @@ class SwarmForm(forms.ModelForm):
             'swarm_city': 'City',
             'swarm_county': 'County',
             'swarm_postcode': 'Post Code',
-            'swarm_message': 'Please enter your message here',
+            'message_body': 'Please enter your message here',
         }
 
         self.fields['contact_name_full'].widget.attrs['autofocus'] = True
