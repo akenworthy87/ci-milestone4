@@ -23,8 +23,8 @@
                 <hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-11 col-lg-5 text-box my-3 pt-2 px-3 hexed-sm">
                 <p>This form is for reporting sightings of honey bee swarms.</p>
                 <p>For all other enquiries, please use the standard <a href="{% url 'contact' %}">Contact form</a>.</p>
             </div>
@@ -51,7 +51,7 @@
                             {{ form.swarm_county|as_crispy_field }}
                             {{ form.swarm_country|as_crispy_field }}
                             {{ form.swarm_postcode|as_crispy_field }}
-                            <p>Please enter useful information about the swarm, such as: <br>
+                            <p class="text-box mt-3 mb-1 py-2 px-3 hexed-sm">Please enter useful information about the swarm, such as: <br>
                                 Location on property, approximate height, how long the swarm
                                 has been there, if bees are flying or clustered, etc</p>
                             {{ form.message_body|as_crispy_field }}

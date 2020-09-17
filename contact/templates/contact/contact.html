@@ -23,15 +23,15 @@
                 <hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-11 col-lg-5 text-box my-3 pt-2 px-3 hexed-sm">
                 <p>This form is for product and other general enquiries.</p>
                 <p>To report a swarm, please use the <a href="{% url 'swarms' %}">Swarm Report form</a>.</p>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <p class="text-muted">Contact:</p>
+                <h5 class="text-muted">Contact:</h5>
                 <form class="mt-3" action="{% url 'contact' %}" method="POST" id="contact-form">
                     {% csrf_token %}
                     {{ form|crispy }}
