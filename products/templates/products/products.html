@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Products</h2>
+                {# Selected categories #}
                 {% for c in current_categories %}
                     <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
@@ -28,6 +29,7 @@
                 <div class="row mt-1 mb-2">
                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                         <div class="sort-select-wrapper w-50">
+                            {# Category Selector #}
                             <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
@@ -51,10 +53,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    {# Generates Product cards #}
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
-                                <h5 class="card-title text-center">{{ product.name }}</h5>
+                            <div class="card bg-comb-wax h-100 border-0">
+                                {# Product Name #}
+                                <h5 class="card-title text-center h-25">{{ product.name }}</h5>
+                                
+                                {# Displays Product Image if avail, placeholder if not #}
                                 {% if product.image %}
                                     <a href="{% url 'product_detail' product.id %}">
                                         <img class="card-img-top img-fluid border hexed-lg" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -64,10 +70,14 @@
                                         <img class="card-img-top img-fluid border hexed-lg" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     </a>
                                 {% endif %}
-                                <div class="card-footer bg-white pt-0 border-0 text-left">
+
+                                {# Card footer with main details #}
+                                <div class="card-footer bg-comb-wax pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
+                                        {# Price #}
                                             <p class="lead mb-0 text-left font-weight-bold">£ {{ product.display_price|floatformat:2|default:"N/A" }}</p>
+                                        {# Category #}
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
                                                 <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -75,11 +85,13 @@
                                                 </a>
                                             </p>
                                             {% endif %}
+                                        {# Rating #}
                                             {% if product.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
+                                        {# Admin functions: Edit/Discontinue #}
                                             {% if request.user.is_superuser %}
                                                 <small class="ml-3">
                                                     <a href="{% url 'edit_product' product.id %}">Edit</a> | 
@@ -91,23 +103,28 @@
                                 </div>
                             </div>
                         </div>
+                        {% comment %} 
+                            Creates horizontal lines between rows of product cards.
+                            Calcs if certain num of produced product cards can be displayed on a row.
+                            Places HR tag and uses media breakpoints to display at correct screen width.
+                        {% endcomment %}
                         {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
+                            <div class="col-12 d-sm-none mb-3">
                                 <hr>
                             </div>
                         {% endif %}                        
                         {% if forloop.counter|divisibleby:2 %}
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-3">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:3 %}
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-3">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:4 %}
-                            <div class="col-12 d-none d-xl-block mb-5">
+                            <div class="col-12 d-none d-xl-block mb-3">
                                 <hr>
                             </div>
                         {% endif %}
