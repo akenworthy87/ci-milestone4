@@ -37,7 +37,7 @@ html {
 body {
     background: url('/media/bees.jpg') no-repeat center fixed;
     background-size: cover;
-    height: calc(100vh - 132px);
+    min-height: 100%;
     color: var(--comb-cocoon);
     background-color: var(--comb-wax);
     font-family: 'Lato';
@@ -385,10 +385,6 @@ input[name='q']::placeholder {
 @media (max-width: 991.5px) {
     .header-container {
         padding-top: 93px;
-    }
-
-    body {
-        height: calc(100vh - 93px);
     }
 
     .display-4.logo-font.text-black {
