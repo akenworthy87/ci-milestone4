@@ -52,7 +52,7 @@
 <body>
     <!-- Header -->
     <header class="container-fluid fixed-top">
-        <div class="row bg-white pt-lg-2">
+        <div class="row bg-comb-honey pt-lg-2">
             <!-- Logo -->
             <div class="col-12 col-lg-2 my-auto py-1 py-lg-0 text-center d-none d-lg-block">
                 <a href="{% url 'home' %}">
@@ -98,7 +98,7 @@
                                         </div>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                                        <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                                             {% include 'includes/nav_elements/cart-div.html' %}
                                         </a>
                                     </li>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <!-- Products -->
-                        <div class="row bg-white ">
+                        <div class="row">
                             <nav class="navbar navbar-expand-lg navbar-light w-100">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
