@@ -1,11 +1,51 @@
+:root {
+    /* Colour scheme vars */
+    /* https://www.color-hex.com/color-palette/34112 */
+    --comb-honey: #ea9d3e;
+    --comb-caps: #e5ac3f;
+    --comb-brood: #e5bd3f;
+    --comb-wax: #eec33d;
+    --comb-cocoon: #312f17;
+    --comb-cocoon-muted: #434237;
+}
+
+/* Color scheme: Background */
+.bg-comb-honey {
+    background-color: var(--comb-honey);
+}
+.bg-comb-caps {
+    background-color: var(--comb-caps);
+}
+.bg-comb-brood {
+    background-color: var(--comb-brood);
+}
+.bg-comb-wax {
+    background-color: var(--comb-wax);
+}
+.bg-comb-cocoon {
+    background-color: var(--comb-cocoon);
+}
+
+.text-muted {
+    color: var(--comb-cocoon-muted) !important;
+}
+
 html {
     height: 100%;
 }
 
 body {
     height: calc(100vh - 132px);
-    color: #555;
+    color: var(--comb-cocoon);
+    background-color: var(--comb-honey);
     font-family: 'Lato';
+}
+
+a {
+    color: #0000c2;
+}
+a.text-danger {
+    color: #a80000;
 }
 
 /* from Bulma */
@@ -19,7 +59,7 @@ body {
 
 .logo {
     max-width: 100%;
-    max-height: 120px;
+    max-height: 96px;
 }
 
 .logo-font {
@@ -33,7 +73,8 @@ body {
 /* From CSS-Tricks:https://css-tricks.com/notched-boxes/ */
 .hexed, 
 .hexed-lg, 
-.hexed-sm {
+.hexed-sm,
+.hexed-xs {
   --notchSize: 20px;
   
   clip-path: 
@@ -48,8 +89,14 @@ body {
       0% calc(100% - var(--notchSize))
     );
 }
+.hexed-xs {
+    --notchSize: 8px
+}
 .hexed-sm {
     --notchSize: 12px
+}
+.hexed {
+    --notchSize: 20px
 }
 .hexed-lg {
     --notchSize: 40px
@@ -59,6 +106,10 @@ body {
     max-height: 200px
 }
 
+.text-box {
+    background-color: var(--comb-caps);
+}
+
 .shop-now-button {
     background: black;
     color: white;
@@ -66,7 +117,7 @@ body {
 }
 
 .home-nav-button {
-    background: rgb(44, 33, 2);
+    background: var(--comb-cocoon);
     color: white;
     min-width: 130px;
     min-height: 130px;
@@ -76,7 +127,7 @@ body {
 }
 
 .btn-black {
-    background: black;
+    background: var(--comb-cocoon);
     color: white;
 }
 
@@ -121,7 +172,7 @@ body {
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: white;
+	background: var(--comb-wax);
 	z-index: -1;
 }
 
