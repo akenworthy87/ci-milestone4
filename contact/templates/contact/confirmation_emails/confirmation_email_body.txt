@@ -1,0 +1,28 @@
+Hello {{ order.name_full }}!
+
+This is a confirmation of your order at Boutique Ado. Your order information is below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.order_date }}
+
+Order Total: £{{ order.cost_total }}
+Delivery: £{{ order.cost_delivery }}
+Grand Total: £{{ order.cost_grand_total }}
+
+Items Ordered:
+{% for item in order.orderlineitems.all %}
+    {{ item.quantity }} X {{ item.product_line.product.name }} - {{ item.product_line.variety_name|upper }} at £{{ item.product_line.price }} each
+    SKU: {{ item.line.product.skup1|upper }}-{{ item.line.skup2|upper }}
+{% endfor %}
+
+Your order will be shipped to {{ order.street_address1 }} in {{ order.city }}, {{ order.country }}.
+
+We've got your phone number on file as {{ order.tel }}.
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+Stonecroft Bees
