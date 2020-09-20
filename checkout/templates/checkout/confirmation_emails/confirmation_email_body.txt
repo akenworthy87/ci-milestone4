@@ -1,6 +1,8 @@
 Hello {{ order.name_full }}!
 
-This is a confirmation of your order at Boutique Ado. Your order information is below:
+This is a confirmation of your order at Stonecroft Bees. 
+
+Your order information is below:
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.order_date }}

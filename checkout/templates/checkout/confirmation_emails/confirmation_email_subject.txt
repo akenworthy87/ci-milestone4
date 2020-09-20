@@ -1,1 +1,1 @@
-Boutique Ado Confirmation for Order Number {{ order.order_number }}
+Stonecroft Bees Confirmation for Order Number {{ order.order_number }}
