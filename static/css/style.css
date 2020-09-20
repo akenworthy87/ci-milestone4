@@ -119,7 +119,7 @@ a.text-danger {
 }
 
 .home-nav-button {
-    background: var(--comb-cocoon);
+    background: var(--comb-caps);
     color: white;
     min-width: 130px;
     min-height: 130px;
