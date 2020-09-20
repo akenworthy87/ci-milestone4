@@ -1,0 +1,25 @@
+Hello Beekeepers!
+
+{{ message.contact_date }}
+A new swarm has been reported in {{ message.swarm_city }}, {{ message.swarm_county }}.
+
+Contact Information: 
+    Name: {{ message.contact_name_full }}
+    Tel: {{ message.contact_tel }}
+    Email: {{ message.contact_email }}
+
+Swarm Address:
+    {{ message.swarm_street_address1 }}
+    {{ message.swarm_street_address2 }}
+    {{ message.swarm_city }}
+    {{ message.swarm_county }}
+    {{ message.swarm_country }}
+    {{ message.swarm_postcode }}
+Message:
+{{ message.message_body|safe }}
+
+
+If you have any further questions, feel free to contact us at {{ contact_email }}.
+Sincerely,
+
+Stonecroft Bees

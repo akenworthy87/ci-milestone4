@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 
 from .forms import GeneralEnquiryForm, SwarmForm
-from .utils import post_actions
+from .utils import post_actions, send_message_confirmation_email, send_swarms_list_email
 from profiles.models import UserProfile
 
 
@@ -10,7 +10,12 @@ def contact(request):
 
     if request.method == 'POST':
         form = GeneralEnquiryForm(request.POST)
-        if post_actions(request, form):
+        message = post_actions(request, form)
+        # If message submission fails, post_actions returns false.
+        # Below and skips the else on L19.
+        # Submitted form is passed back to render with error message.
+        if message:
+            send_message_confirmation_email(message, "GEN")
             return redirect(reverse('home'))
     else:
         # Attempt to prefill the form with any info
@@ -41,7 +46,10 @@ def swarms(request):
 
     if request.method == 'POST':
         form = SwarmForm(request.POST)
-        if post_actions(request, form):
+        message = post_actions(request, form)
+        if message:
+            send_message_confirmation_email(message, "swm")
+            send_swarms_list_email(message, "swm")
             return redirect(reverse('home'))
     else:
         # Attempt to prefill the form with any info
