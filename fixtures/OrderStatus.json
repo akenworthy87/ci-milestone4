@@ -1,0 +1,42 @@
+[
+{
+    "model": "checkout.orderstatus",
+    "pk": 1,
+    "fields": {
+        "status_code": "processing",
+        "status_friendly": "Processing"
+    }
+},
+{
+    "model": "checkout.orderstatus",
+    "pk": 2,
+    "fields": {
+        "status_code": "pending",
+        "status_friendly": "Pending"
+    }
+},
+{
+    "model": "checkout.orderstatus",
+    "pk": 3,
+    "fields": {
+        "status_code": "picking",
+        "status_friendly": "Picking"
+    }
+},
+{
+    "model": "checkout.orderstatus",
+    "pk": 4,
+    "fields": {
+        "status_code": "dispatched",
+        "status_friendly": "Dispatched"
+    }
+},
+{
+    "model": "checkout.orderstatus",
+    "pk": 5,
+    "fields": {
+        "status_code": "cancelled",
+        "status_friendly": "Cancelled"
+    }
+}
+]

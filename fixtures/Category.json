@@ -1,0 +1,18 @@
+[
+{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "name": "honey_jars",
+        "friendly_name": "Jarred Honey"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "name": "honey_bulk",
+        "friendly_name": "Bulk Honey"
+    }
+}
+]

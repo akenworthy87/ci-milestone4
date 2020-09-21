@@ -1,0 +1,171 @@
+[
+{
+    "model": "products.productstock",
+    "pk": 1,
+    "fields": {
+        "product": 1,
+        "skup2": "J001",
+        "variety_name": "Single Jar",
+        "price": "4.00",
+        "stock_qty": 100,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 2,
+    "fields": {
+        "product": 1,
+        "skup2": "J006",
+        "variety_name": "6 Jars",
+        "price": "22.50",
+        "stock_qty": 20,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 3,
+    "fields": {
+        "product": 1,
+        "skup2": "J012",
+        "variety_name": "12 Jars",
+        "price": "42.20",
+        "stock_qty": 20,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 4,
+    "fields": {
+        "product": 1,
+        "skup2": "J018",
+        "variety_name": "18 Jars",
+        "price": "59.00",
+        "stock_qty": 20,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 5,
+    "fields": {
+        "product": 1,
+        "skup2": "J024",
+        "variety_name": "24 Jars",
+        "price": "73.00",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 6,
+    "fields": {
+        "product": 3,
+        "skup2": "LINE1",
+        "variety_name": "20 stock, 0 reserved",
+        "price": "1.00",
+        "stock_qty": 20,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 7,
+    "fields": {
+        "product": 3,
+        "skup2": "LINE2",
+        "variety_name": "15 stock, 5 reserved",
+        "price": "3.50",
+        "stock_qty": 15,
+        "stock_reserved": 5,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 8,
+    "fields": {
+        "product": 3,
+        "skup2": "LINE3",
+        "variety_name": "No stock",
+        "price": "9.99",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 9,
+    "fields": {
+        "product": 3,
+        "skup2": "LINE4",
+        "variety_name": "10 stock, ALL reserved",
+        "price": "0.52",
+        "stock_qty": 10,
+        "stock_reserved": 10,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 10,
+    "fields": {
+        "product": 3,
+        "skup2": "LINE5",
+        "variety_name": "Discontinued",
+        "price": "99.99",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": true
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 11,
+    "fields": {
+        "product": 5,
+        "skup2": "LINEDISCONO1",
+        "variety_name": "I am not discontinued",
+        "price": "6.66",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 12,
+    "fields": {
+        "product": 5,
+        "skup2": "LINEDISCOYES",
+        "variety_name": "I am discontinued",
+        "price": "4.55",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": true
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 13,
+    "fields": {
+        "product": 5,
+        "skup2": "LINEDISCONO2",
+        "variety_name": "Second not discontinued",
+        "price": "2.55",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+}
+]

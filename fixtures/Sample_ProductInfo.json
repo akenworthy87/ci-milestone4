@@ -1,0 +1,72 @@
+[
+{
+    "model": "products.productinfo",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "name": "16oz (454g) Jarred Honey",
+        "description": "Pure raw, unfiltered* honey extracted straight from our hives.\r\nNo added preservatives, chemicals, or sugar syrup - just the concentrated nectar and pollen as the bees made it. \r\n\r\nStore at room temperature, away from strong light. Clear honey may begin to crystallise if stored at low temperatures Should this happen, place the jar in a bowl of hot water (max 60\u00b0C) until the honey becomes clear again.\r\n\r\n*Unfiltered is technically a misnomer, the honey is passed through a series of coarse and medium filters to remove bits of bees and other foreign particles, but isn't passed through a fine filter which would remove the pollen.",
+        "skup1": "HONJAR0001",
+        "image_url": null,
+        "image": "3_2529_Original_1lb_Honey_Jar_with_Gold_Screw_Lid_2d6d4f1.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 2,
+    "fields": {
+        "category": 1,
+        "name": "No line items",
+        "description": "This is a test item which has no line items",
+        "skup1": "TESTNOLINES",
+        "image_url": null,
+        "image": "",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "name": "Test item with lines",
+        "description": "A test item with line items",
+        "skup1": "TESTYESLINES",
+        "image_url": null,
+        "image": "",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 4,
+    "fields": {
+        "category": 1,
+        "name": "Test Discontinued Item",
+        "description": "A discontinued test item",
+        "skup1": "TESTDISCON",
+        "image_url": null,
+        "image": "",
+        "rating": null,
+        "product_discontinued": true
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 5,
+    "fields": {
+        "category": 1,
+        "name": "Test Line Discontinued",
+        "description": "An item with a discontinued line",
+        "skup1": "TESTLINEDISCON",
+        "image_url": null,
+        "image": "",
+        "rating": null,
+        "product_discontinued": false
+    }
+}
+]

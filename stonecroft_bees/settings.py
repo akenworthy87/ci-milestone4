@@ -25,7 +25,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEVELOPMENT') == 'True'
-print("Debug: ON") if DEBUG else print("Debug: OFF")
 
 # TODO: Add heroku host
 ALLOWED_HOSTS = ['localhost', ]
