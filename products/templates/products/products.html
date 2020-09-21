@@ -55,54 +55,54 @@
                 <div class="row">
                     {# Generates Product cards #}
                     {% for product in products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card-deck col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card bg-comb-wax h-100 border-0">
                                 {# Product Name #}
-                                <h5 class="card-title text-center h-25">{{ product.name }}</h5>
-                                
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ product.name }}</h5>
+                                </div>
+
                                 {# Displays Product Image if avail, placeholder if not #}
                                 {% if product.image %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="card-img-top img-fluid border hexed-lg" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        <img class="card-img-top hexed-lg" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     </a>
                                 {% else %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="card-img-top img-fluid border hexed-lg" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                        <img class="card-img-top hexed-lg" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     </a>
                                 {% endif %}
 
-                                {# Card footer with main details #}
-                                <div class="card-footer bg-comb-wax pt-1 border-0 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                        {# Price #}
-                                            <p class="lead mb-0 text-left font-weight-bold">£ {{ product.display_price|floatformat:2|default:"N/A" }}</p>
-                                        {# Category #}
-                                            {% if product.category %}
-                                            <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                                                </a>
-                                            </p>
-                                            {% endif %}
-                                        {# Rating #}
-                                            {% if product.rating %}
-                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                                            {% else %}
-                                                <small class="text-muted">No Rating</small>
-                                            {% endif %}
-                                        {# Admin functions: Edit/Discontinue #}
-                                            {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                                    <a class="text-danger" href="{% url 'discontinue_product' product.id %}">Discontinue</a>
-                                                </small>
-                                            {% endif %}
-                                        </div>
-                                    </div>
+                                {# Card footer with main details, maintains alignment with other footers #}
+                                <div class="card-footer bg-comb-wax pt-2 border-0 text-left">
+                                    {# Price #}
+                                    <p class="lead mb-0 text-left font-weight-bold">£ {{ product.display_price|floatformat:2|default:"N/A" }}</p>
+                                    {# Category #}
+                                    {% if product.category %}
+                                    <p class="small mt-1 mb-0">
+                                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                        </a>
+                                    </p>
+                                    {% endif %}
+                                    {# Rating #}
+                                    {% if product.rating %}
+                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                    {% else %}
+                                        <small class="text-muted">No Rating</small>
+                                    {% endif %}
+                                    {# Admin functions: Edit/Discontinue #}
+                                    {% if request.user.is_superuser %}
+                                        <small class="ml-3">
+                                            <a href="{% url 'edit_product' product.id %}">Edit</a> | 
+                                            <a class="text-danger" href="{% url 'discontinue_product' product.id %}">Discontinue</a>
+                                        </small>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
+
+
                         {% comment %} 
                             Creates horizontal lines between rows of product cards.
                             Calcs if certain num of produced product cards can be displayed on a row.
