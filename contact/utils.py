@@ -20,9 +20,9 @@ def post_actions(request, form):
             # Attach the user's profile to the form
             form = form.save(commit=False)
             form.user_profile = profile
-        form.save()
+        enquiry = form.save()
         messages.success(request, 'Message sent successfully')
-        return form
+        return enquiry
     else:
         messages.error(request,
                        ('Message failed. Please ensure '
