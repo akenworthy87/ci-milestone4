@@ -26,8 +26,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEVELOPMENT') == 'True'
 
-# TODO: Add heroku host
-ALLOWED_HOSTS = ['localhost', ]
+if 'HEROKU_HOSTNAME' in os.environ:
+    ALLOWED_HOSTS = ['localhost', os.environ.get('HEROKU_HOSTNAME')]
+else:
+    ALLOWED_HOSTS = ['localhost', ]
 
 
 # Application definition
