@@ -217,11 +217,8 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
+# Sends live emails if 'USE_EMAIL' envar present
 if 'USE_EMAIL' in os.environ:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'stonecroftbees@example.com'
-    DEFAULT_SWARMS_EMAIL = 'swarms@example.com'
-else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
     EMAIL_PORT = os.environ.get('EMAIL_PORT')
@@ -230,3 +227,8 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
     DEFAULT_SWARMS_EMAIL = os.environ.get('EMAIL_SWARMS')
+# Sends false emails to console, for debugging purposes, if not
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'stonecroftbees@example.com'
+    DEFAULT_SWARMS_EMAIL = 'swarms@example.com'
