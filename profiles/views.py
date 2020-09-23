@@ -23,7 +23,8 @@ def profile(request):
                             'the form is valid.'))
     else:
         form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+    # Gets user's order history, newest first
+    orders = profile.orders.all().order_by('-order_date')
 
     template = 'profiles/profile.html'
     context = {
