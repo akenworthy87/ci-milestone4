@@ -21,6 +21,14 @@ def add_to_bag(request):
     line = get_object_or_404(ProductStock, pk=line_id)
     bag = request.session.get('bag', {})
 
+    # Checks product line isn't discontinued
+    # This shouldn't be possible normally, but is a defensive check
+    if line.variety_discontinued is True:
+        messages.error(
+            request,
+            "Sorry, that product line is discontinued")
+        return redirect(redirect_url)
+
     # Checks if quantity is greater than zero, rejects with error if not
     if quantity < 1:
         messages.error(
