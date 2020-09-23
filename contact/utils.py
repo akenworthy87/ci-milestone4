@@ -15,14 +15,14 @@ def post_actions(request, form):
     user logged in and has profile, returns saved form (with record id).
     """
     if form.is_valid():
+        form = form.save(commit=False)
         if request.user.is_authenticated:
             profile = UserProfile.objects.get(user=request.user)
             # Attach the user's profile to the form
-            form = form.save(commit=False)
             form.user_profile = profile
-        enquiry = form.save()
+        form.save()
         messages.success(request, 'Message sent successfully')
-        return enquiry
+        return form
     else:
         messages.error(request,
                        ('Message failed. Please ensure '
