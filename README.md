@@ -65,12 +65,44 @@ For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pd
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
-
 ### Existing Features
 
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+#### A secure login system (provided by allauth) to:
+- Register for accounts, login/out, handle emails for confirmation and password resets
+- User Profiles to:
+  - store their contact and delivery information, to prefil forms with for convenience
+  - maintain an order history
+
+#### A navbar which provides easy access on any page to:
+- Login/Register/View User Profile
+- Frequent admin functions
+- Shopping cart with a display of the current total
+- Search products
+- Access product categories
+- Access the contact systems
+
+#### A Product Database which:
+- Stores details of Products sold such as name, category, etc
+- Has Product Lines for different colour varities of products or bulk casings
+  - Each line allows it's own price and name, and tracks its own stock levels
+- Products list display which displays products filtered by category and allows sorting by various options
+- Product details which present the image, name, price etc of the product and its lines to the customers
+
+#### Basic stock keeping:
+- Each Product has Product Lines which track the quantity in stock and the amount of stock reserved
+- When a customer completes an order stock is reserved on that Line
+- The availible stock (Quantity - Reserved) is checked at various points to ensure customer can not buy more than is available
+  - Product Details: 
+    - The available stock is passed to the selector and displayed for the customer
+    - This is passed to the quantity selector, which uses it to set its max levels
+  - Bag: 
+    - Checked when adding to bag, or adjusting current quantity
+    - When viewing bag, Javascript highlights the fields which have more selected than available
+  - Checkout: 
+    - Once as a precheck before the user sees the form, returns them to Bag screen to make adjustments if needed
+    - When purchase submitted a final penultimate check is made during order creation (or backup Webhook)
+      - This is for the very rare instances that someone has bought the stock between the time the customer enters the checkout and submits the purchase
+      - In this case the payment intent is cancelled so the user isn't charged, and the customer is returned to the bag page with error details
 
 For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 
@@ -78,7 +110,14 @@ In addition, you may also use this section to discuss plans for additional featu
 
 ### Features Left to Implement
 
-- Another feature idea
+For following User Stories were cut for time, but would be good to implement later:
+
+| ID  | As A/An    | I want to...                                                      | So I can...                                                                           |
+| 3   | Shopper    | See list of deals, clearance items, etc                           | Take advantage of deals and save money                                                |
+| 27  | Site Owner | Automatically have reserved stocked unmarked when order cancelled | Allow that stock to be re-available for purchase by other shoppers                    |
+| 28  | Site Owner | Stock to subtract when order marked as dispatched                 | Have stock levels on system match stock levels in warehouse                           |
+| 29  | Site Owner | Get a printable invoice                                           | So I know what items to pick for an order                                             |
+
 
 ## Technologies Used
 
@@ -107,7 +146,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Content
 
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- No text resources were sampled from external sources
 
 ### Media
 
@@ -119,4 +158,4 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Acknowledgements
 
-- I received inspiration for this project from Code Institute's 'Full Stack Frameworks With Django' course material. 
+- I received inspiration for this project, and based the code, from Code Institute's 'Full Stack Frameworks With Django' course material. 
