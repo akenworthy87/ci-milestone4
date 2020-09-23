@@ -166,10 +166,61 @@ There's currently no way for the user to set their name fields, this would be hi
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+###### Languages
 
+- [HTML5](https://www.w3.org/standards/webdesign/htmlcss)
+	- Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
+- [CSS](https://www.w3.org/standards/webdesign/htmlcss)
+	- Used to create style sheets to adjust the styles of HTML elements.
+- [JavaScript](https://developer.mozilla.org/en/JavaScript)
+  - Used to provide interactive and dynamic content on the front end.
+- [Python 3](https://www.python.org/)
+  - Used to provide backend functionality such as database interaction and web app functions.
+
+###### Frameworks & Libraries
+
+- [Bootstrap 4.5.0](https://materializecss.com/)
+  - CSS framework that provides a collection of prebuilt styles to quickly develop a fully responsive website.
 - [JQuery](https://jquery.com)
-  - The project uses **JQuery** to simplify DOM manipulation.
+  - A JavaScript framework to simplify DOM manipulation. Required by Materialize.
+- [Django](https://www.djangoproject.com/)
+  - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+- [Django-Allauth](https://www.intenct.nl/projects/django-allauth/)
+  - A Django app that provides a premade user authentication system, using this ensures the login components of this project are well developed and secure.
+- [Django-Crispy-Forms](https://github.com/django-crispy-forms/django-crispy-forms)
+  - Allows the use of forms that are clean and cripsy, without having to write HTML yourself.
+- [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+  - The AWS SDK to allow the use of AWS S3 Buckets
+
+###### Platforms
+
+- [Github](https://github.com/)
+  - Hosting service for Git Software Version Controlled repositories. 
+  - Also provides GitHub Projects - a kanban board system I used to keep track of development tasks.
+- [Heroku](https://www.heroku.com/)
+  - Cloud-based web hosting service for dynamic websites.
+- [AWS S3](https://aws.amazon.com/s3/)
+  - AWS's Simple Storage Service provides 'buckets' to store static and media files for the site, as Heroku doesn't allow persistant ones.
+- [Stripe](https://stripe.com/)
+  - Online payment processor who provides APIs and frameworks to integrate the shopping components of this site with Stripe's safe and secure payment system.
+
+###### Tools
+
+- [Inkscape](https://inkscape.org/)
+    - A vector based drawing program. Used to create the site's Logo/Favicon.
+- [Gitpod](https://gitpod.io/)
+	- Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
+- [Google Chrome](https://www.google.com/chrome/)
+	- Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+
+###### Validators
+
+- [W3C Validator](https://validator.w3.org/)
+	- Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
+- [W3C Jigsaw](https://jigsaw.w3.org/css-validator/)
+	- Validates CSS files for syntax errors.
+- [Cornflakes Linter](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter)
+  - Validates Python code for syntax errors and checks for compliance with PEP8 styling rules, on the fly within VSCode/Gitpod.
 
 ## Testing
 
