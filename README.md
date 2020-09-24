@@ -62,6 +62,12 @@ For Desktop wireframes see [docs/wireframes/desktop.pdf](docs/wireframes/desktop
 
 For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pdf)
 
+### Datamap
+
+[Original propose Datamap](docs/datamap/proposed_datamap.jpg)
+
+[Actual Datamap](docs/datamap/actual_datamap.jpg)
+![Datamap](docs/datamap/actual_datamap.jpg)
 
 ## Features
 
