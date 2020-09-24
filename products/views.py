@@ -68,6 +68,12 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(ProductInfo, pk=product_id)
+
+    # Checks product isn't discontinued
+    if product.product_discontinued is True:
+        messages.error(request, 'Sorry, that product is not availible.')
+        return redirect(reverse('home'))
+
     lines = (product.productlines
              .filter(variety_discontinued=False))
 

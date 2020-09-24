@@ -40,7 +40,7 @@
                             {{ form.contact_email|as_crispy_field }}
                             {{ form.contact_tel|as_crispy_field }}
                             <div class="d-md-none d-lg-block text-center">
-                                <img src="{{ MEDIA_URL }}/swarm.jpg" alt="A settled swarm of honey bees" class="img-fluid hexed-lg">
+                                <img src="{{ MEDIA_URL }}swarm.jpg" alt="A settled swarm of honey bees" class="img-fluid hexed-lg">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -63,6 +63,7 @@
                 </form>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}

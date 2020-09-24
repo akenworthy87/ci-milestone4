@@ -1,5 +1,5 @@
 .order-history {
-    max-height: 416px; /* height of profile form + submit button */
+    max-height: calc(100vh - 320px); /* VH - (Nav bar + page header + sub-heading + some padding) */
     overflow-y: auto;
 }
 

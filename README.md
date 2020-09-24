@@ -62,30 +62,171 @@ For Desktop wireframes see [docs/wireframes/desktop.pdf](docs/wireframes/desktop
 
 For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pdf)
 
+### Datamap
+
+[Original propose Datamap](docs/datamap/proposed_datamap.jpg)
+
+[Actual Datamap](docs/datamap/actual_datamap.jpg)
+![Datamap](docs/datamap/actual_datamap.jpg)
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
-
 ### Existing Features
 
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+#### A secure login system (provided by allauth) to:
+- Register for accounts, login/out, handle emails for confirmation and password resets
+- User Profiles to:
+  - store their contact and delivery information, to prefil forms with for convenience
+  - maintain an order history
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+#### A navbar which provides easy access on any page to:
+- Login/Register/View User Profile
+- Frequent admin functions
+- Shopping cart with a display of the current total
+- Search products
+- Access product categories
+- Access the contact systems
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+#### A Product Database which:
+- Stores details of Products sold such as name, category, etc
+- Has Product Lines for different colour varities of products or bulk casings
+  - Each line allows it's own price and name, and tracks its own stock levels
+- Products list display which displays products filtered by category and allows sorting by various options
+- Product details which present the image, name, price etc of the product and its lines to the customers
+- Makes use of Django Admin pages to manage creating and editing of products/lines
+- Product/Lines soft delete via a '***_discontinued' field, to maintain data integrity and references with order history, etc
+
+#### Stock Keeping:
+- Each Product has Product Lines which track the quantity in stock and the amount of stock reserved
+- When a customer completes an order stock is reserved on that Line
+- The available stock (Quantity - Reserved) is checked at various points to ensure customer can not buy more than is available
+  - Product Details: 
+    - The available stock is passed to the selector and displayed for the customer
+    - This is passed to the quantity selector, which uses it to set its max levels
+  - Bag: 
+    - Checked when adding to bag, or adjusting current quantity
+    - When viewing bag, Javascript highlights the fields which have more selected than available
+  - Checkout: 
+    - Once as a precheck before the user sees the form, returns them to Bag screen to make adjustments if needed
+    - When purchase submitted a final penultimate check is made during order creation (or backup Webhook)
+      - This is for the very rare instances that someone has bought the stock between the time the customer enters the checkout and submits the purchase
+      - In this case the payment intent is cancelled so the user isn't charged, and the customer is returned to the bag page with error details
+
+#### Bag
+- Bag total is visible on every page via a navbar element
+- Provides a page for the customer to:
+  - view items in their bag
+  - alter the quantity of items in the bag
+  - remove items from the bag
+- Validates that quantity selected is actually available (see Stock Keeping.3)
+
+#### Checkout 
+- Uses the Stripe payment system to provide safe and secure checking out
+- Allows purchases by both registered and unregistered customers
+- Orders are stored in the database
+- Uses Stripe Webhooks to create Order record if something goes wrong between the customer purchasing the order and the backend creating the order
+- Payment Intents are deferred until Ordered created on DB either via POST backend or Webhook
+- Orders have a status:
+  - Processing - when order is initially created on DB
+  - Pending - set once Webhook has been recieved to confirm payment successfully
+  - Picking - order has been sent for picking in warehouse (FOR FUTURE USE)
+  - Dispatched - order has been dispatched to customer (FOR FUTURE USE)
+  - Cancelled - Order has been cancelled (FOR FUTURE USE)
+- Customer recieves email to confirm order
+
+#### Contact
+- Provides a contact form for general enquiries
+- Provides a contact form for reporting bee swarms
+- Both send email receipt to submitter
+- Swarms sends email to specified email address (likely an email address group) with details of the swarm
+- Messages are stored in the database for future use
 
 ### Features Left to Implement
 
-- Another feature idea
+For following User Stories were cut for time, but would be good to implement later:
+
+| ID  | As A/An    | I want to...                                                      | So I can...                                                                           |
+| --- | ---------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| 3   | Shopper    | See list of deals, clearance items, etc                           | Take advantage of deals and save money                                                |
+| 27  | Site Owner | Automatically have reserved stocked unmarked when order cancelled | Allow that stock to be re-available for purchase by other shoppers                    |
+| 28  | Site Owner | Stock to subtract when order marked as dispatched                 | Have stock levels on system match stock levels in warehouse                           |
+| 29  | Site Owner | Get a printable invoice                                           | So I know what items to pick for an order                                             |
+
+#### Future Ideas
+##### Stock Reservation
+As currently implemented the focus was primary a defensive one to prevent customers trying to purchase more stock than available.  
+Although this was implemented with the intent of also giving a good User Expirience, there is still room for improvement.
+
+Specifically the final checkout check, which occurs after the customer has already entered their payment information and confirmed the purchase, 
+this could be annoying (and concerning) to the customer (though should be rare after the previous checks, and the customer isn't actually charged).
+
+A better system would probably have some sort of soft reservations when a user adds the item to their bag, 
+but this would need to make a system to clear or expire those reservations when the user abandons the purchase. 
+
+##### Stock Control / Ordering
+The current system is baby steps, it tracks the quantity in the warehouse and updates the amount reserved when purchased.  
+But a full system would need to create picking tickets, track when dispatched, and allow the user to cancel their order and return the stock to the available pool.
+
+##### User Profile
+There's currently no way for the user to set their name fields, this would be highly useful for a full program.
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+###### Languages
 
+- [HTML5](https://www.w3.org/standards/webdesign/htmlcss)
+	- Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
+- [CSS](https://www.w3.org/standards/webdesign/htmlcss)
+	- Used to create style sheets to adjust the styles of HTML elements.
+- [JavaScript](https://developer.mozilla.org/en/JavaScript)
+  - Used to provide interactive and dynamic content on the front end.
+- [Python 3](https://www.python.org/)
+  - Used to provide backend functionality such as database interaction and web app functions.
+
+###### Frameworks & Libraries
+
+- [Bootstrap 4.5.0](https://materializecss.com/)
+  - CSS framework that provides a collection of prebuilt styles to quickly develop a fully responsive website.
 - [JQuery](https://jquery.com)
-  - The project uses **JQuery** to simplify DOM manipulation.
+  - A JavaScript framework to simplify DOM manipulation. Required by Materialize.
+- [Django](https://www.djangoproject.com/)
+  - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+- [Django-Allauth](https://www.intenct.nl/projects/django-allauth/)
+  - A Django app that provides a premade user authentication system, using this ensures the login components of this project are well developed and secure.
+- [Django-Crispy-Forms](https://github.com/django-crispy-forms/django-crispy-forms)
+  - Allows the use of forms that are clean and cripsy, without having to write HTML yourself.
+- [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+  - The AWS SDK to allow the use of AWS S3 Buckets
+
+###### Platforms
+
+- [Github](https://github.com/)
+  - Hosting service for Git Software Version Controlled repositories. 
+  - Also provides GitHub Projects - a kanban board system I used to keep track of development tasks.
+- [Heroku](https://www.heroku.com/)
+  - Cloud-based web hosting service for dynamic websites.
+- [AWS S3](https://aws.amazon.com/s3/)
+  - AWS's Simple Storage Service provides 'buckets' to store static and media files for the site, as Heroku doesn't allow persistant ones.
+- [Stripe](https://stripe.com/)
+  - Online payment processor who provides APIs and frameworks to integrate the shopping components of this site with Stripe's safe and secure payment system.
+
+###### Tools
+
+- [Inkscape](https://inkscape.org/)
+    - A vector based drawing program. Used to create the site's Logo/Favicon.
+- [Gitpod](https://gitpod.io/)
+	- Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
+- [Google Chrome](https://www.google.com/chrome/)
+	- Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+
+###### Validators
+
+- [W3C Validator](https://validator.w3.org/)
+	- Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
+- [W3C Jigsaw](https://jigsaw.w3.org/css-validator/)
+	- Validates CSS files for syntax errors.
+- [Cornflakes Linter](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter)
+  - Validates Python code for syntax errors and checks for compliance with PEP8 styling rules, on the fly within VSCode/Gitpod.
 
 ## Testing
 
@@ -107,7 +248,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Content
 
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- No text resources were sampled from external sources
 
 ### Media
 
@@ -119,4 +260,4 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Acknowledgements
 
-- I received inspiration for this project from Code Institute's 'Full Stack Frameworks With Django' course material. 
+- I received inspiration for this project, and based the code, from Code Institute's 'Full Stack Frameworks With Django' course material. 

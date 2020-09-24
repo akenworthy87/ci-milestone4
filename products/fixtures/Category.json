@@ -14,5 +14,101 @@
         "name": "honey_bulk",
         "friendly_name": "Bulk Honey"
     }
+},
+{
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+        "name": "hives_frames",
+        "friendly_name": "Frames"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+        "name": "hives_parts",
+        "friendly_name": "Parts"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+        "name": "hives_nucs",
+        "friendly_name": "Nuc Boxes"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+        "name": "hives_feeders",
+        "friendly_name": "Feeders"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 7,
+    "fields": {
+        "name": "bees_queens",
+        "friendly_name": "Queens"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 8,
+    "fields": {
+        "name": "bees_packages",
+        "friendly_name": "Packages"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 9,
+    "fields": {
+        "name": "bees_nucs",
+        "friendly_name": "Nucs"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 10,
+    "fields": {
+        "name": "equip_suits",
+        "friendly_name": "Suits"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 11,
+    "fields": {
+        "name": "equip_smokers",
+        "friendly_name": "Smokers"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 12,
+    "fields": {
+        "name": "equip_tools",
+        "friendly_name": "Hive Tools"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 13,
+    "fields": {
+        "name": "equip_jars",
+        "friendly_name": "Empty Jars"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 14,
+    "fields": {
+        "name": "equip_books",
+        "friendly_name": "Books"
+    }
 }
 ]

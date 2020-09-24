@@ -76,7 +76,12 @@
                                 {# Variety Selector #}
                                 <div class="col-12">
                                     <p><strong>Variety:</strong></p>
-                                    <select class="form-control rounded-0 w-75" name="product_variety" id="id_product_variety" data-item_id="{{ product.id }}" required>
+                                    <select class="form-control rounded-0 w-75" 
+                                            name="product_variety" 
+                                            id="id_product_variety" 
+                                            data-item_id="{{ product.id }}" 
+                                            required
+                                            size="{{ lines.count }}">
                                         {% for line in lines %}
                                             <option value="{{ line.id }}" 
                                                     {% if forloop.counter is 1 %}selected{% endif %} 
