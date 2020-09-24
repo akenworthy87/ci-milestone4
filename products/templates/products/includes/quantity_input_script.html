@@ -18,7 +18,7 @@
                 $('#id_submit_btn').prop('disabled', false);
             }
             if(currentValue > stockAvailible) {
-                currentValue = Math.max(stockAvailible, 1)
+                currentValue = Math.max(stockAvailible, 1);
                 $(`#id_qty_${itemId}`).val(currentValue);
             }
             handlePriceDisplays(currentValue);
@@ -40,7 +40,7 @@
     function lightUpdateLink(caller) {
         var closestUpdateLink = caller.closest('.update-form').next('.update-link')[0];
         if(closestUpdateLink) {
-            $(closestUpdateLink).addClass("text-primary text-uppercase font-weight-bold font-italic")
+            $(closestUpdateLink).addClass("text-primary text-uppercase font-weight-bold font-italic");
         }
     }
 
