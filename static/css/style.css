@@ -9,7 +9,7 @@
     --comb-cocoon-muted: #434237;
 }
 
-/* Color scheme: Background */
+/* Color scheme: Background ############################################################################## */
 .bg-comb-honey {
     background-color: var(--comb-honey);
 }
@@ -25,11 +25,14 @@
 .bg-comb-cocoon {
     background-color: var(--comb-cocoon);
 }
-
-.text-muted {
-    color: var(--comb-cocoon-muted) !important;
+.bg-black {
+    background: #000 !important;
+}
+.text-box {
+    background-color: var(--comb-caps);
 }
 
+/* Element super styles ############################################################################## */
 html {
     height: 100%;
 }
@@ -73,6 +76,7 @@ a.text-danger {
 }
 
 /* From CSS-Tricks:https://css-tricks.com/notched-boxes/ */
+/* Notches the corners of elements, used to make buttons look like honey comb cells */
 .hexed, 
 .hexed-lg, 
 .hexed-sm,
@@ -108,16 +112,8 @@ a.text-danger {
     max-height: 200px
 }
 
-.text-box {
-    background-color: var(--comb-caps);
-}
-
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
-}
-
+/* Button styles ############################################################################## */
+/* Main buttons on home page */
 .home-nav-button {
     background: var(--comb-caps);
     color: white;
@@ -146,9 +142,6 @@ a.text-danger {
     color: white !important;
 }
 
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
@@ -156,16 +149,25 @@ a.text-danger {
     color: white;
 }
 
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Color scheme: Text ############################################################################## */
 .text-black {
     color: #000 !important;
 }
 
-.border-black {
-    border: 1px solid black !important;
+.text-muted {
+    color: var(--comb-cocoon-muted) !important;
 }
 
-.bg-black {
-    background: #000 !important;
+.border-black {
+    border: 1px solid black !important;
 }
 
 .overlay {
@@ -181,14 +183,6 @@ a.text-danger {
 a.category-badge > span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
-}
-
-.btt-button {
-    height: 42px;
-    width: 42px;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
 }
 
 .btt-link,
