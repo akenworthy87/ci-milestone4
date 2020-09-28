@@ -241,16 +241,18 @@ Testing documentation is located in a separate [TESTING.md document](docs/TESTIN
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+### Remarks
+There are two git branches:
+  - Master: the dev branch
+  - Live: the live branch
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
+The dev branch is used for development and is considered unstable.  
+The live branch is used for deployments to heroku, and is considered stable.  
+At time of submission these should match codewise, if they don't then I am very very silly.  
+The only differences should be is that the Live deployment uses an external Postgres DB instead of a local SQLlite,  
+the media and static files are hosted externally on AWS, and actual emails are sent instead of console prints.
 
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
-
-In addition, if it is not obvious, you should also describe how to run your code locally.
-
+There are no config files to change, all custom settings are managed through environment variables.
 
 ### Heroku Deployment
 
@@ -267,6 +269,7 @@ In addition, if it is not obvious, you should also describe how to run your code
     (e.g. 'https://ak87-milestone4.herokuapp.com/checkout/wh/')
 
 #### Heroku
+
 - Create a new app
 - Under Resources > Add-ons: Provision a new Postgres database
 - Settings > Config Vars: Add the following enviromental variables
@@ -298,7 +301,7 @@ In addition, if it is not obvious, you should also describe how to run your code
   - Connect to your Github fork for the Stonecroft Bees repo
   - Manual Deployment: Choose Live branch
   - (Optional) Set up automatic deployments from Live branch 
-- Heroku CLI Run (or Web Interface > Other > Run Console):
+- Heroku CLI Run (or Web Interface > Other > Run Console), in order:
   1. Python3 manage.py migrate
   2. Python3 manage.py loaddata OrderStatus
   3. Python3 manage.py loaddata Category
@@ -318,6 +321,40 @@ In addition, if it is not obvious, you should also describe how to run your code
     - Change example.com
       - Domain name: The [HEROKU_HOSTNAME]
       - Display name: Something friendly, e.g. Stonecroft Bees
+
+
+### Local Deployment
+
+Assuming this is to run without an external DB, S3 Bucket, or functional email system: 
+
+#### Predeployment 
+
+- Create a fork of the Stonecroft Bee's github repo
+- Create a Stripe Account
+  - Create a webhook to '[Herokuapp Address]/checkout/wh/'  
+    (e.g. 'https://ak87-milestone4.herokuapp.com/checkout/wh/')
+
+#### Local Enviroment
+- Clone forked repo to local environment
+- Only the following environment variables are required:
+  - DEVELOPMENT - set to 'True' (remember: case sensitive!) or static/media files won't be served
+  - SECRET_KEY
+  - STRIPE_PUBLIC_KEY
+  - STRIPE_SECRET_KEY
+  - STRIPE_WH_SECRET 
+- Run the following, in order:
+  1. Python3 manage.py migrate
+  2. Python3 manage.py loaddata OrderStatus
+  3. Python3 manage.py loaddata Category
+  4. (Optional) Python3 manage.py loaddata Sample_ProductInfo
+  5. (Optional) Python3 manage.py loaddata Sample_ProductStock
+  6. Python3 manage.py createsuperuser
+
+#### Post Deployment
+- Go to [LOCAL_HOST]/admin/ and log in with the created Super User
+  - Accounts: Emails Addresses: 
+    - Check email for super user exists, if not add it
+    - Check 'Verified' and 'Primary' are ticked
 
 
 ## Credits
