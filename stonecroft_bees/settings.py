@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEVELOPMENT') == 'True'
+DEBUG = (os.environ.get('DEVELOPMENT') == 'True')
 
 if 'HEROKU_HOSTNAME' in os.environ:
     ALLOWED_HOSTS = ['localhost', os.environ.get('HEROKU_HOSTNAME')]
