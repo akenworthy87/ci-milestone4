@@ -182,9 +182,9 @@ a staff user, it would still be a better experience to have customised admin pag
 ###### Languages
 
 - [HTML5](https://www.w3.org/standards/webdesign/htmlcss)
-	- Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
+  - Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
 - [CSS](https://www.w3.org/standards/webdesign/htmlcss)
-	- Used to create style sheets to adjust the styles of HTML elements.
+  - Used to create style sheets to adjust the styles of HTML elements.
 - [JavaScript](https://developer.mozilla.org/en/JavaScript)
   - Used to provide interactive and dynamic content on the front end.
 - [Python 3](https://www.python.org/)
@@ -220,18 +220,20 @@ a staff user, it would still be a better experience to have customised admin pag
 ###### Tools
 
 - [Inkscape](https://inkscape.org/)
-    - A vector based drawing program. Used to create the site's Logo/Favicon.
+  - A vector based drawing program. Used to create the site's Logo/Favicon.
 - [Gitpod](https://gitpod.io/)
-	- Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
+  - Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
 - [Google Chrome](https://www.google.com/chrome/)
-	- Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+  - Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+- [Coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
+  - Monitors what parts of a Python program are executed, most useful for monitoring the coverage of automated unit tests. 
 
 ###### Validators
 
 - [W3C Validator](https://validator.w3.org/)
-	- Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
+  - Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
 - [W3C Jigsaw](https://jigsaw.w3.org/css-validator/)
-	- Validates CSS files for syntax errors.
+  - Validates CSS files for syntax errors.
 - [Cornflakes Linter](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter)
   - Validates Python code for syntax errors and checks for compliance with PEP8 styling rules, on the fly within VSCode/Gitpod.
 
