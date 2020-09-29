@@ -4,6 +4,8 @@ Stonecroft Bees will be a website for a commercial beekeeping business; which se
 
 The site will be a full featured e-commerce site, allowing both registered and unregistered purchases by customers, and the site admin to administrate products and users, and manage stock levels.
 
+A demo for the site can be found hosted on Heroku at [https://ak87-milestone4.herokuapp.com/](https://ak87-milestone4.herokuapp.com/)
+
 ## UX
 
 ### Intended Audience
@@ -76,7 +78,7 @@ For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pd
 #### A secure login system (provided by allauth) to:
 - Register for accounts, login/out, handle emails for confirmation and password resets
 - User Profiles to:
-  - store their contact and delivery information, to prefil forms with for convenience
+  - store their contact and delivery information, to prefill forms with for convenience
   - maintain an order history
 
 #### A navbar which provides easy access on any page to:
@@ -89,7 +91,7 @@ For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pd
 
 #### A Product Database which:
 - Stores details of Products sold such as name, category, etc
-- Has Product Lines for different colour varities of products or bulk casings
+- Has Product Lines for different colour varieties of products or bulk casings
   - Each line allows it's own price and name, and tracks its own stock levels
 - Products list display which displays products filtered by category and allows sorting by various options
 - Product details which present the image, name, price etc of the product and its lines to the customers
@@ -105,9 +107,9 @@ For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pd
     - This is passed to the quantity selector, which uses it to set its max levels
   - Bag: 
     - Checked when adding to bag, or adjusting current quantity
-    - When viewing bag, Javascript highlights the fields which have more selected than available
+    - When viewing bag, JavaScript highlights the fields which have more selected than available
   - Checkout: 
-    - Once as a precheck before the user sees the form, returns them to Bag screen to make adjustments if needed
+    - Once as a pre-check before the user sees the form, returns them to Bag screen to make adjustments if needed
     - When purchase submitted a final penultimate check is made during order creation (or backup Webhook)
       - This is for the very rare instances that someone has bought the stock between the time the customer enters the checkout and submits the purchase
       - In this case the payment intent is cancelled so the user isn't charged, and the customer is returned to the bag page with error details
@@ -128,11 +130,11 @@ For Mobile wireframes see [docs/wireframes/mobile.pdf](docs/wireframes/mobile.pd
 - Payment Intents are deferred until Ordered created on DB either via POST backend or Webhook
 - Orders have a status:
   - Processing - when order is initially created on DB
-  - Pending - set once Webhook has been recieved to confirm payment successfully
+  - Pending - set once Webhook has been received to confirm payment successfully
   - Picking - order has been sent for picking in warehouse (FOR FUTURE USE)
   - Dispatched - order has been dispatched to customer (FOR FUTURE USE)
   - Cancelled - Order has been cancelled (FOR FUTURE USE)
-- Customer recieves email to confirm order
+- Customer receives email to confirm order
 
 #### Contact
 - Provides a contact form for general enquiries
@@ -155,7 +157,7 @@ For following User Stories were cut for time, but would be good to implement lat
 #### Future Ideas
 ##### Stock Reservation
 As currently implemented the focus was primary a defensive one to prevent customers trying to purchase more stock than available.  
-Although this was implemented with the intent of also giving a good User Expirience, there is still room for improvement.
+Although this was implemented with the intent of also giving a good User Experience, there is still room for improvement.
 
 Specifically the final checkout check, which occurs after the customer has already entered their payment information and confirmed the purchase, 
 this could be annoying (and concerning) to the customer (though should be rare after the previous checks, and the customer isn't actually charged).
@@ -170,14 +172,22 @@ But a full system would need to create picking tickets, track when dispatched, a
 ##### User Profile
 There's currently no way for the user to set their name fields, this would be highly useful for a full program.
 
+##### Custom admin pages
+To save time I made use of Django's built in admin panel system to create forms to manage database tables, 
+they are highly functional and get the job done, but do take the user away from the main site. Even if they are 
+a staff user, it would still be a better experience to have customised admin pages that match the rest of the site.
+
+##### Automated Testing
+Automated tests have been implemented for the Home, Products, and Contact app, but are still to do for the Bag, Checkout, and Profiles apps - though they have been manually tested.
+
 ## Technologies Used
 
 ###### Languages
 
 - [HTML5](https://www.w3.org/standards/webdesign/htmlcss)
-	- Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
+  - Latest version of the Hyper Text Markup Language, used to write the markup language the browser interprets to display the webpage elements.
 - [CSS](https://www.w3.org/standards/webdesign/htmlcss)
-	- Used to create style sheets to adjust the styles of HTML elements.
+  - Used to create style sheets to adjust the styles of HTML elements.
 - [JavaScript](https://developer.mozilla.org/en/JavaScript)
   - Used to provide interactive and dynamic content on the front end.
 - [Python 3](https://www.python.org/)
@@ -186,15 +196,15 @@ There's currently no way for the user to set their name fields, this would be hi
 ###### Frameworks & Libraries
 
 - [Bootstrap 4.5.0](https://materializecss.com/)
-  - CSS framework that provides a collection of prebuilt styles to quickly develop a fully responsive website.
+  - CSS framework that provides a collection of pre-built styles to quickly develop a fully responsive website.
 - [JQuery](https://jquery.com)
   - A JavaScript framework to simplify DOM manipulation. Required by Materialize.
 - [Django](https://www.djangoproject.com/)
   - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 - [Django-Allauth](https://www.intenct.nl/projects/django-allauth/)
-  - A Django app that provides a premade user authentication system, using this ensures the login components of this project are well developed and secure.
+  - A Django app that provides a pre-made user authentication system, using this ensures the login components of this project are well developed and secure.
 - [Django-Crispy-Forms](https://github.com/django-crispy-forms/django-crispy-forms)
-  - Allows the use of forms that are clean and cripsy, without having to write HTML yourself.
+  - Allows the use of forms that are clean and crispy, without having to write HTML yourself.
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
   - The AWS SDK to allow the use of AWS S3 Buckets
 
@@ -206,25 +216,27 @@ There's currently no way for the user to set their name fields, this would be hi
 - [Heroku](https://www.heroku.com/)
   - Cloud-based web hosting service for dynamic websites.
 - [AWS S3](https://aws.amazon.com/s3/)
-  - AWS's Simple Storage Service provides 'buckets' to store static and media files for the site, as Heroku doesn't allow persistant ones.
+  - AWS's Simple Storage Service provides 'buckets' to store static and media files for the site, as Heroku doesn't allow persistent ones.
 - [Stripe](https://stripe.com/)
   - Online payment processor who provides APIs and frameworks to integrate the shopping components of this site with Stripe's safe and secure payment system.
 
 ###### Tools
 
 - [Inkscape](https://inkscape.org/)
-    - A vector based drawing program. Used to create the site's Logo/Favicon.
+  - A vector based drawing program. Used to create the site's Logo/Favicon.
 - [Gitpod](https://gitpod.io/)
-	- Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
+  - Provides an online Linux container workspace that includes the Theia web based IDE, and allows the rapid setup of a development environment.
 - [Google Chrome](https://www.google.com/chrome/)
-	- Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+  - Web browser. Includes Dev Tools which provide information on how the elements are rendered, what style rules are applied, and allows editing of the HTML and CSS to see their effects live in the view pane. 
+- [Coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
+  - Monitors what parts of a Python program are executed, most useful for monitoring the coverage of automated unit tests. 
 
 ###### Validators
 
 - [W3C Validator](https://validator.w3.org/)
-	- Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
+  - Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
 - [W3C Jigsaw](https://jigsaw.w3.org/css-validator/)
-	- Validates CSS files for syntax errors.
+  - Validates CSS files for syntax errors.
 - [Cornflakes Linter](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter)
   - Validates Python code for syntax errors and checks for compliance with PEP8 styling rules, on the fly within VSCode/Gitpod.
 
@@ -234,15 +246,121 @@ Testing documentation is located in a separate [TESTING.md document](docs/TESTIN
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+### Remarks
+There are two git branches:
+  - Master: the dev branch
+  - Live: the live branch
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
+The dev branch is used for development and is considered unstable.  
+The live branch is used for deployments to heroku, and is considered stable.  
+At time of submission these should match codewise, if they don't then I am very very silly.  
+The only differences should be is that the Live deployment uses an external Postgres DB instead of a local SQLlite,  
+the media and static files are hosted externally on AWS, and actual emails are sent instead of console prints.
 
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+There are no config files to change, all custom settings are managed through environment variables.
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+### Heroku Deployment
+
+#### Predeployment 
+
+- Create a fork of the Stonecroft Bee's github repo
+- Create a public S3 Bucket on Amazon Web Services (consult AWS's manual for how to do this)
+  - Download the 'new_user_credentials.csv' to a safe place after making the user
+- Set up an email service that allows SMTP outgoing mail, e.g. Gmail 
+  - Create an address for general outgoing/incoming mail (the contact address)
+  - Create an mailing list address for the Swarms service
+- Create a Stripe Account
+  - Create a webhook to '[Herokuapp Address]/checkout/wh/'  
+    (e.g. 'https://ak87-milestone4.herokuapp.com/checkout/wh/')
+
+#### Heroku
+
+- Create a new app
+- Under Resources > Add-ons: Provision a new Postgres database
+- Settings > Config Vars: Add the following enviromental variables
+
+| Key                     | Description                                           | Remarks                                                                                     |
+|-------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| AWS_ACCESS_KEY_ID       | The Access key ID of the AWS static files user        | From new_user_credentials.csv                                                               |
+| AWS_S3_REGION_NAME      | The AWS region name of the S3 bucket                  | E.g. 'eu-west-2'                                                                            |
+| AWS_SECRET_ACCESS_KEY   | The Secret Access key of the AWS static files user    | From new_user_credentials.csv                                                               |
+| AWS_STORAGE_BUCKET_NAME | The name of the AWS S3 bucket                         |                                                                                             |
+| DATABASE_URL            | The URL of the Postgres DB                            | Should be auto-populated after provisioning the Postgres DB in Heroku                       |
+| DEVELOPMENT             | Whether to run the server in Debug mode or not        | 'True' to run in debug mode. Case sensitive!                                                |
+| EMAIL_HOST              | The host address of your email webserver              | E.g. 'smtp.gmail.com'                                                                       |
+| EMAIL_HOST_PASSWORD     | Password for your email host                          |                                                                                             |
+| EMAIL_HOST_USER         | Username for your email host                          |                                                                                             |
+| EMAIL_PORT              | Port of email server                                  | E.g. 587                                                                                    |
+| EMAIL_SWARMS            | Address of the Swarms email address                   |                                                                                             |
+| EMAIL_USE_TLS           | If Email provider requires the use of TLS             |                                                                                             |
+| HEROKU_HOSTNAME         | Hostname of the Heroku app                            | E.g. ak87-milestone4.herokuapp.com                                                          |
+| SECRET_KEY              | The Django secret key                                 | Use a keygen (e.g. https://djecrety.ir/) to generate                                        |
+| STRIPE_PUBLIC_KEY       | The Stripe public key                                 |                                                                                             |
+| STRIPE_SECRET_KEY       | The Stripe secret key                                 |                                                                                             |
+| STRIPE_WH_SECRET        | The Stripe Webhook secret key                         |                                                                                             |
+| USE_AWS                 | Whether to use AWS or local storage for static files  | Only presence is checked, any value is considered True <br>!!Required to be on for Heroku!! |
+| USE_EMAIL               | Whether to use real emails or print emails to console | Only presence is checked, any value is considered True                                      |
+
+- Deploy
+  - Deployment Method: Github
+  - Connect to your Github fork for the Stonecroft Bees repo
+  - Manual Deployment: Choose Live branch
+  - (Optional) Set up automatic deployments from Live branch 
+- Heroku CLI Run (or Web Interface > Other > Run Console), in order:
+  1. Python3 manage.py migrate
+  2. Python3 manage.py loaddata OrderStatus
+  3. Python3 manage.py loaddata Category
+  4. (Optional) Python3 manage.py loaddata Sample_ProductInfo
+  5. (Optional) Python3 manage.py loaddata Sample_ProductStock
+  6. Python3 manage.py createsuperuser
+
+#### Post Deployment
+
+- The Static files will have been collected and pushed the S3 bucket during the build (check build logs for success)
+- The Media files will not, copy these to a 'media' folder in the root of the S3 bucket manually through the AWS S3 web interface or cli
+- Go to [HEROKU_HOSTNAME]/admin/ and log in with the created Super User
+  - Accounts: Emails Addresses: 
+    - Check email for super user exists, if not add it
+    - Check 'Verified' and 'Primary' are ticked
+  - Sites: Sites:
+    - Change example.com
+      - Domain name: The [HEROKU_HOSTNAME]
+      - Display name: Something friendly, e.g. Stonecroft Bees
+
+
+### Local Deployment
+
+Assuming this is to run without an external DB, S3 Bucket, or functional email system: 
+
+#### Predeployment 
+
+- Create a fork of the Stonecroft Bee's github repo
+- Create a Stripe Account
+  - Create a webhook to '[Herokuapp Address]/checkout/wh/'  
+    (e.g. 'https://ak87-milestone4.herokuapp.com/checkout/wh/')
+
+#### Local Enviroment
+- Clone forked repo to local environment
+- Only the following environment variables are required:
+  - DEVELOPMENT - set to 'True' (remember: case sensitive!) or static/media files won't be served
+  - SECRET_KEY
+  - STRIPE_PUBLIC_KEY
+  - STRIPE_SECRET_KEY
+  - STRIPE_WH_SECRET 
+- Run the following, in order:
+  1. Python3 manage.py migrate
+  2. Python3 manage.py loaddata OrderStatus
+  3. Python3 manage.py loaddata Category
+  4. (Optional) Python3 manage.py loaddata Sample_ProductInfo
+  5. (Optional) Python3 manage.py loaddata Sample_ProductStock
+  6. Python3 manage.py createsuperuser
+
+#### Post Deployment
+- Go to [LOCAL_HOST]/admin/ and log in with the created Super User
+  - Accounts: Emails Addresses: 
+    - Check email for super user exists, if not add it
+    - Check 'Verified' and 'Primary' are ticked
+
 
 ## Credits
 

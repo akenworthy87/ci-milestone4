@@ -15,4 +15,8 @@ urlpatterns = [
         'discontinue/<int:product_id>/',
         views.discontinue_product,
         name='discontinue_product'),
+    path(
+        'discontinue_line/<int:line_id>/',
+        views.discontinue_line,
+        name='discontinue_line'),
 ]
