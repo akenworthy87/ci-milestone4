@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from .models import GeneralEnquiry, Swarm
-from profiles.models import UserProfile
 
 
 class TestViewsContact(TestCase):
@@ -23,17 +22,20 @@ class TestViewsContact(TestCase):
         self.assertTemplateUsed(response, 'contact/contact.html')
 
     def test_post_contact_success_anom(self):
+        init_record_count = len(GeneralEnquiry.objects.all())
         response = self.client.post(
             reverse('contact'),
-            {   'contact_name_full': 'Joe Test',
+            {
+                'contact_name_full': 'Joe Test',
                 'contact_email': 'joe@test.com',
                 'contact_tel': '0123456789',
                 'message_body': 'This is a test message'})
         self.assertRedirects(response, reverse('home'))
-        records = GeneralEnquiry.objects.all()
-        self.assertEqual(len(records), 1)
+        end_record_count = len(GeneralEnquiry.objects.all())
+        self.assertEqual(end_record_count, init_record_count + 1)
 
     def test_post_contact_success_authed(self):
+        init_record_count = len(GeneralEnquiry.objects.all())
         self.user = User.objects.create_user(
             username='foobar',
             email='foo@bar.com',
@@ -41,15 +43,17 @@ class TestViewsContact(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('contact'),
-            {   'contact_name_full': 'Joe Test',
+            {
+                'contact_name_full': 'Joe Test',
                 'contact_email': 'joe@test.com',
                 'contact_tel': '0123456789',
                 'message_body': 'This is a test message'})
         self.assertRedirects(response, reverse('home'))
-        records = GeneralEnquiry.objects.all()
-        self.assertEqual(len(records), 1)
+        end_record_count = len(GeneralEnquiry.objects.all())
+        self.assertEqual(end_record_count, init_record_count + 1)
 
     def test_post_contact_invalid(self):
+        init_record_count = len(GeneralEnquiry.objects.all())
         self.user = User.objects.create_user(
             username='foobar',
             email='foo@bar.com',
@@ -57,13 +61,15 @@ class TestViewsContact(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('contact'),
-            {   'contact_name_full': '',
+            {
+                'contact_name_full': '',
                 'contact_email': '',
                 'contact_tel': '',
                 'message_body': ''})
         self.assertTemplateUsed(response, 'contact/contact.html')
-        records = GeneralEnquiry.objects.all()
-        self.assertEqual(len(records), 0)
+        end_record_count = len(GeneralEnquiry.objects.all())
+        self.assertEqual(end_record_count, init_record_count)
+
 
 class TestViewsSwarms(TestCase):
 
@@ -83,9 +89,11 @@ class TestViewsSwarms(TestCase):
         self.assertTemplateUsed(response, 'contact/swarms.html')
 
     def test_post_swarms_success_anom(self):
+        init_record_count = len(Swarm.objects.all())
         response = self.client.post(
             reverse('swarms'),
-            {   'contact_name_full': 'Joe Test',
+            {
+                'contact_name_full': 'Joe Test',
                 'contact_email': 'joe@test.com',
                 'contact_tel': '0123456789',
                 'message_body': 'This is a test message',
@@ -93,10 +101,11 @@ class TestViewsSwarms(TestCase):
                 'swarm_city': 'Testford',
                 'swarm_country': 'GB'})
         self.assertRedirects(response, reverse('home'))
-        records = Swarm.objects.all()
-        self.assertEqual(len(records), 1)
+        end_record_count = len(Swarm.objects.all())
+        self.assertEqual(end_record_count, init_record_count + 1)
 
     def test_post_swarms_success_authed(self):
+        init_record_count = len(Swarm.objects.all())
         self.user = User.objects.create_user(
             username='foobar',
             email='foo@bar.com',
@@ -104,7 +113,8 @@ class TestViewsSwarms(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('swarms'),
-            {   'contact_name_full': 'Joe Test',
+            {
+                'contact_name_full': 'Joe Test',
                 'contact_email': 'joe@test.com',
                 'contact_tel': '0123456789',
                 'message_body': 'This is a test message',
@@ -112,10 +122,11 @@ class TestViewsSwarms(TestCase):
                 'swarm_city': 'Testford',
                 'swarm_country': 'GB'})
         self.assertRedirects(response, reverse('home'))
-        records = Swarm.objects.all()
-        self.assertEqual(len(records), 1)
+        end_record_count = len(Swarm.objects.all())
+        self.assertEqual(end_record_count, init_record_count + 1)
 
     def test_post_swarms_invalid(self):
+        init_record_count = len(Swarm.objects.all())
         self.user = User.objects.create_user(
             username='foobar',
             email='foo@bar.com',
@@ -123,10 +134,11 @@ class TestViewsSwarms(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('swarms'),
-            {   'contact_name_full': '',
+            {
+                'contact_name_full': '',
                 'contact_email': '',
                 'contact_tel': '',
                 'message_body': ''})
         self.assertTemplateUsed(response, 'contact/swarms.html')
-        records = Swarm.objects.all()
-        self.assertEqual(len(records), 0)
+        end_record_count = len(Swarm.objects.all())
+        self.assertEqual(end_record_count, init_record_count)
