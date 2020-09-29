@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from .models import GeneralEnquiry, Swarm
 from .forms import GeneralEnquiryForm, SwarmForm
-from .utils import post_actions, send_message_confirmation_email, send_swarms_list_email
+from .utils import (post_actions,
+                    send_message_confirmation_email,
+                    send_swarms_list_email)
 
 
 class TestPostActionsGeneralEnq(TestCase):

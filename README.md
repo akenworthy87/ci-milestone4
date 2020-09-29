@@ -177,6 +177,9 @@ To save time I made use of Django's built in admin panel system to create forms 
 they are highly functional and get the job done, but do take the user away from the main site. Even if they are 
 a staff user, it would still be a better experience to have customised admin pages that match the rest of the site.
 
+##### Automated Testing
+Automated tests have been implemented for the Home, Products, and Contact app, but are still to do for the Bag, Checkout, and Profiles apps - though they have been manually tested.
+
 ## Technologies Used
 
 ###### Languages
