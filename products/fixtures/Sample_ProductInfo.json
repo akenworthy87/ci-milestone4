@@ -68,5 +68,131 @@
         "rating": null,
         "product_discontinued": false
     }
+},
+{
+    "model": "products.productinfo",
+    "pk": 7,
+    "fields": {
+        "category": 1,
+        "name": "2oz (25g) Honey Sample Pots",
+        "description": "Small sample jars. Perfect for Weddings, Corporate events and other events.",
+        "skup1": "HONJAR0002",
+        "image_url": null,
+        "image": "honeysample.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 8,
+    "fields": {
+        "category": 3,
+        "name": "Wax Foundation Sheets (Brood)",
+        "description": "Foundation sheets for brood frames.\r\n\r\nPrepressed with comb pattern.",
+        "skup1": "FSB001",
+        "image_url": null,
+        "image": "foundationsheets.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 9,
+    "fields": {
+        "category": 3,
+        "name": "SN4 Super Frames and Foundation",
+        "description": "SN4 Super Frames with wired wax foundation",
+        "skup1": "SN401",
+        "image_url": null,
+        "image": "sn4frmsht.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 10,
+    "fields": {
+        "category": 4,
+        "name": "UK National Hive (Wood)",
+        "description": "Contains:\r\n - 1 x Floor + Mesh & Inspection board\r\n - 1 x Deep brood box\r\n - 2 x Supers\r\n - 1 x Crown board\r\n - 1 x Roof",
+        "skup1": "NH001",
+        "image_url": null,
+        "image": "nationalhive.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 11,
+    "fields": {
+        "category": 5,
+        "name": "Poly Nuc hive",
+        "description": "Polystyrene Nuc hive design to hold six brood frames.\r\nHas side feeding chamber.\r\n\r\nComes with box, roof, plastic crownboard, and entrance reducer.",
+        "skup1": "NUCP01",
+        "image_url": null,
+        "image": "polynuc.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 12,
+    "fields": {
+        "category": 14,
+        "name": "Haynes Bee Manual",
+        "description": "As expected from Haynes, their beekeeping manual is full of short and to the point information with lots and lots of pictures.\r\n\r\nA great book for new beekeepers who are visual learners.",
+        "skup1": "BK001",
+        "image_url": null,
+        "image": "haynesbeemanual.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 13,
+    "fields": {
+        "category": 10,
+        "name": "\"Astronaut\" Jacket",
+        "description": "A beekeeping jacket with a self supporting hood, this provides the wearer's head with improved ventilation over other veil styles.",
+        "skup1": "BS01",
+        "image_url": null,
+        "image": "jacketastro.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 14,
+    "fields": {
+        "category": 10,
+        "name": "\"Fencer\" Bee Suit",
+        "description": "A full sized bee suit with fencer-style hood.",
+        "skup1": "BS02",
+        "image_url": null,
+        "image": "suitfencing.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
+},
+{
+    "model": "products.productinfo",
+    "pk": 15,
+    "fields": {
+        "category": 10,
+        "name": "\"Traditional\" Bee Suit",
+        "description": "Otherwise known as the 'Sheriff' style, this bee suit has a traditional hat and veil hood.",
+        "skup1": "BS03",
+        "image_url": null,
+        "image": "suittrad.jpg",
+        "rating": null,
+        "product_discontinued": false
+    }
 }
 ]

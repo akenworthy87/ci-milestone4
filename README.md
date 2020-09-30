@@ -375,6 +375,13 @@ Assuming this is to run without an external DB, S3 Bucket, or functional email s
   - bees.jpg from [Undark](https://undark.org/2016/05/24/evolving-a-better-honey-bee-how-wild-bees-resist-the-varroa-mite/)
   - noimage.png taken from Code Institute course materials
   - logo.svg original work by me, Andrew Kenworthy
+  - honeysample.jpg from [Amazon](https://www.amazon.com/Honey-Wedding-Jar-Planning-Corporate/dp/B073HLWXWH)
+  - foundationsheets.jpg from [Amazon](https://www.amazon.com/Yellow-Beehive-Coated-Foundation-2-Inch/dp/B083PWS6PP/)
+  - nationalhive.jpg from [Abelo](https://www.abelo.co.uk/shop/national-hive/national-hive-cedar/national-hive-flat-roof-cedar-second-quality/)
+  - polynuc.jpg frm [Paynes Bee Farm](https://www.paynesbeefarm.co.uk/nuc-mating-hives/poly-nuc-hive/)
+  - sn4frmsht.jpg from [Abelo](https://www.abelo.co.uk/shop/foundation/10-sn4-national-hoffman-super-frames-wired-foundation/)
+  - haynesbeemanual.jpg [Beekeeping.co.uk](https://www.beekeeping.co.uk/products/haynes-bee-manual-book_590768)
+  - Beekeeping suits from [Beebasic](https://www.beebasic.co.uk/product-category/protective-bee-clothing/bee-suits/)
 
 ### Acknowledgements
 

@@ -167,5 +167,265 @@
         "stock_reserved": 0,
         "variety_discontinued": false
     }
+},
+{
+    "model": "products.productstock",
+    "pk": 14,
+    "fields": {
+        "product": 7,
+        "skup2": "S020",
+        "variety_name": "20 Pack",
+        "price": "60.00",
+        "stock_qty": 20,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 15,
+    "fields": {
+        "product": 7,
+        "skup2": "S050",
+        "variety_name": "50 Pack",
+        "price": "115.00",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 16,
+    "fields": {
+        "product": 7,
+        "skup2": "S100",
+        "variety_name": "100 Pack",
+        "price": "200.00",
+        "stock_qty": 5,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 17,
+    "fields": {
+        "product": 8,
+        "skup2": "S010",
+        "variety_name": "10 Pack",
+        "price": "20.00",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 18,
+    "fields": {
+        "product": 8,
+        "skup2": "S020",
+        "variety_name": "20 Pack",
+        "price": "34.99",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 19,
+    "fields": {
+        "product": 9,
+        "skup2": "P010",
+        "variety_name": "10 Pack",
+        "price": "18.25",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 20,
+    "fields": {
+        "product": 9,
+        "skup2": "P011",
+        "variety_name": "11 Pack",
+        "price": "20.00",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 21,
+    "fields": {
+        "product": 9,
+        "skup2": "P020",
+        "variety_name": "20 Pack",
+        "price": "33.33",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 22,
+    "fields": {
+        "product": 9,
+        "skup2": "P022",
+        "variety_name": "22 Pack",
+        "price": "36.00",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 23,
+    "fields": {
+        "product": 10,
+        "skup2": "CEDR",
+        "variety_name": "Cedarwood",
+        "price": "125.00",
+        "stock_qty": 10,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 24,
+    "fields": {
+        "product": 10,
+        "skup2": "PINE",
+        "variety_name": "Pinewood",
+        "price": "99.99",
+        "stock_qty": 15,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 25,
+    "fields": {
+        "product": 11,
+        "skup2": "GRN01",
+        "variety_name": "Green",
+        "price": "39.50",
+        "stock_qty": 5,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 26,
+    "fields": {
+        "product": 11,
+        "skup2": "YLW01",
+        "variety_name": "Yellow",
+        "price": "34.50",
+        "stock_qty": 15,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 27,
+    "fields": {
+        "product": 11,
+        "skup2": "BLK01",
+        "variety_name": "Black",
+        "price": "39.50",
+        "stock_qty": 11,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 28,
+    "fields": {
+        "product": 12,
+        "skup2": "H001",
+        "variety_name": "Hardback",
+        "price": "22.99",
+        "stock_qty": 0,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 29,
+    "fields": {
+        "product": 13,
+        "skup2": "J01",
+        "variety_name": "Brown",
+        "price": "59.99",
+        "stock_qty": 3,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 30,
+    "fields": {
+        "product": 14,
+        "skup2": "FEN-S",
+        "variety_name": "Small",
+        "price": "63.00",
+        "stock_qty": 15,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 31,
+    "fields": {
+        "product": 14,
+        "skup2": "FEN-M",
+        "variety_name": "Medium",
+        "price": "63.00",
+        "stock_qty": 15,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 32,
+    "fields": {
+        "product": 14,
+        "skup2": "FEN-L",
+        "variety_name": "Large",
+        "price": "63.00",
+        "stock_qty": 4,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
+},
+{
+    "model": "products.productstock",
+    "pk": 33,
+    "fields": {
+        "product": 14,
+        "skup2": "FEN-XL",
+        "variety_name": "Extra Large",
+        "price": "63.00",
+        "stock_qty": 7,
+        "stock_reserved": 0,
+        "variety_discontinued": false
+    }
 }
 ]
