@@ -203,3 +203,25 @@ to the customer or transaction fees to the business.
 This was set to capture the charge once the order record was generated, but could be
 set to capture at a later point, e.g. when the goods are dispatched from the warehouse - 
 which a lot of retail companies do.
+
+
+---------
+## Other Browsers
+
+Development was done using Chrome. 
+
+The other browsers I checked the site with were: Firefox, Opera, Edge, and Chrome for Android.  
+There were no noticeable differences in appearance between the browsers.  
+
+I did briefly look at IE to confirm how broke it looked, and it looks like the CSS vars don't load 
+so the backgrounds aren't coloured correctly.  
+IE isn't a supported browser any more so I won't be fixing it.
+
+
+---------
+## Remarks
+
+The products list grid display can go a little wonky if pictures are used which do not have square dimensions.
+A solution of course is to only use images with square dimensions for product images, but a better one
+would be to implement something like [django-image-cropping](https://github.com/jonasundderwolf/django-image-cropping),
+which allows a site admin to upload an image of any size but be able to choose which part of it to crop.
