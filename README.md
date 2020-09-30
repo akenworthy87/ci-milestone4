@@ -180,6 +180,12 @@ a staff user, it would still be a better experience to have customised admin pag
 ##### Automated Testing
 Automated tests have been implemented for the Home, Products, and Contact app, but are still to do for the Bag, Checkout, and Profiles apps - though they have been manually tested.
 
+##### Product images
+The products list grid display can go a little wonky if pictures are used which do not have square dimensions.
+A solution of course is to only use images with square dimensions for product images, but a better one
+would be to implement something like [django-image-cropping](https://github.com/jonasundderwolf/django-image-cropping),
+which allows a site admin to upload an image of any size but be able to choose which part of it to crop.
+
 ## Technologies Used
 
 ###### Languages
